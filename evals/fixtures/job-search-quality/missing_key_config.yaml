@@ -1,0 +1,12 @@
+# Fixture: missing required key (currency)
+preferences:
+  minimum_base_salary_excluding_super_aud: 180000
+  preferred_title_levels:
+    - "Senior"
+  preferred_title_families:
+    - "Platform Engineering"
+  minimum_equivalent_scope: "Owns platform reliability"
+  excluded_title_levels:
+    - "Graduate"
+  salary_unknown_policy: "provisional_if_strong_fit"
+  maximum_new_jira_issues_per_run: 5

@@ -1,6 +1,6 @@
 ---
 name: job-search-quality
-description: Screen job opportunities, prepare job records and tailored CVs, and verify the result against current salary, title, source, and document-quality preferences. Use for job boards or scheduled searches.
+description: Screen job opportunities, prepare job records and tailored CVs, and verify the result against current salary, title, source, and document-quality preferences. Applies to job boards and scheduled searches.
 ---
 # Job search quality
 
