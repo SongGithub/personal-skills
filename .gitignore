@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+
+# Generated output
+*.pdf
+out/
+
+# Local private data — never commit
+preferences.yaml
+profile.md
+targets.md
+evidence.md
+career-notes.md
+cv/

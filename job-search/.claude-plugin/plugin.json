@@ -1,0 +1,8 @@
+{
+  "name": "job-search",
+  "description": "Job search workflow — evaluates fit, screens against current salary and title preferences, and tailors CVs and cover letters.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Your Name"
+  }
+}

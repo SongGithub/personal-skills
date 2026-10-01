@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  principles:
+    name: No personal data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for personal data
+        env:
+          # The denylist is a repository secret, never a file in this repo.
+          PERSONAL_DENYLIST: ${{ secrets.PERSONAL_DENYLIST }}
+        run: bash scripts/check-principles.sh
+
+  structure:
+    name: Layout intact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify symlinks and references
+        run: bash scripts/check-structure.sh

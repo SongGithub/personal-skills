@@ -1,0 +1,31 @@
+{
+  "name": "personal-skills",
+  "owner": {
+    "name": "Your Name"
+  },
+  "metadata": {
+    "description": "A Claude Code plugin marketplace for job-search workflows and writing style.",
+    "version": "1.0.0",
+    "pluginRoot": "."
+  },
+  "plugins": [
+    {
+      "name": "job-search",
+      "source": "./job-search",
+      "description": "Job search workflow — evaluates job fit, screens salary and title preferences, tailors CVs and cover letters, and preps interviews.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "communication-style",
+      "source": "./communication-style",
+      "description": "A direct, plain-spoken, Australian-English writing style for anything Claude drafts — chat, email, Slack, tickets, docs.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "document-design",
+      "source": "./document-design",
+      "description": "A reusable HTML document design system for CVs, one-pagers and short reports, with print-to-PDF rules.",
+      "version": "1.0.0"
+    }
+  ]
+}

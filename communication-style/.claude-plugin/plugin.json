@@ -1,0 +1,8 @@
+{
+  "name": "communication-style",
+  "description": "A direct, plain-spoken, Australian-English writing style for anything Claude drafts — chat, email, Slack, tickets, docs.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Your Name"
+  }
+}
