@@ -6,9 +6,24 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 
 | Plugin | Description |
 |--------|-------------|
-| `job-search` | Evaluate job fit, screen salary and title criteria, tailor CVs and cover letters, and prepare for interviews. |
+| `job-search` | The job-search workflow: evaluation, screening, tailoring, filing, and the skills built around it. |
 | `document-design` | A reusable HTML document design system — design tokens, print-to-PDF rules — for CVs, one-pagers and short reports. |
 | `communication-style` | A direct, plain-spoken, Australian-English writing style for anything an assistant drafts. |
+
+### Skills
+
+| Skill | Purpose |
+|-------|---------|
+| `job-search-quality` | Screening rules and evidence gates. Holds the configuration contract. |
+| `job-application-assistant` | Evaluate fit, tailor CVs and cover letters, prepare interviews. |
+| `apply-jobs-workflow` | Posting → tailored CV → PDF → archive → tracker. |
+| `cv-attach-workflow` | Generate a CV for a tracked role and attach it, then verify. |
+| `job-scraper` | Discover new postings, deduplicate, rank by fit. |
+| `upskill` | Gap heatmap and learning plan from tracked roles vs. profile. |
+| `trello-card-rules` | Duplicate detection, title format and lane placement for Trello. |
+| `first-principles-startup` | First-principles reasoning for a startup or a job search (中文). |
+| `document-design` | The HTML/CSS design system CVs are rendered with. |
+| `communication-style` | Writing style for drafted prose. |
 
 ## Setup
 
@@ -111,16 +126,30 @@ facts about any person. Candidate-specific data lives outside the repository und
 ```
 $JOB_SEARCH_HOME            (default: ~/.config/job-search/)
   preferences.yaml          salary floor, title ranges, per-run limits
+  integrations.yaml         tracker backend, board/lane IDs, archive dir, CV template,
+                            search locations, helper CLI paths
   profile.md                who the candidate is: history, skills, education
   evidence.md               STAR stories and achievements, with numbers
   targets.md                environments to prefer and to avoid
   career-notes.md           financial position and career framing
-  cv/                       real CV variants
+  cv/                       real CV variants, including the master template
+  upskill/                  generated upskill reports
 ```
 
 Start from the `*.example.*` files shipped alongside each skill and replace the placeholders.
 If a required file is missing or unreadable, the skill **stops and names the file** rather than
 guessing or falling back to defaults.
+
+### Two trackers, one config
+
+`integrations.yaml` sets `tracker_backend` to either `jira` or `trello`. The
+`job-search-quality` evidence gate writes a Jira issue; `trello-card-rules` writes a Trello
+card. Both are supported and neither hardcodes the other's vocabulary — no "lane" in Jira
+terms, no "issue key" in Trello terms. Board, list and project identifiers all come from the
+config file, never from a skill.
+
+**Credentials never live in this repository or in `integrations.yaml`.** Every secret is named
+by environment variable there (`jira.api_token_env`, `trello.token_env`) and read at call time.
 
 ## Guard rails
 
@@ -132,7 +161,7 @@ CI runs these on every push and pull request:
 - `scripts/check-structure.sh` — fails on a symlink under `skills/` or a plugin directory, on a
   plugin copy that has drifted from its canonical skill, on a plugin with no skills, or on a
   `SKILL.md` citing a `references/` file that does not exist.
-- `python3 evals/run.py` — 112 assertions across frontmatter validity, reference integrity,
+- `python3 evals/run.py` — 157 assertions across frontmatter validity, reference integrity,
   config-key documentation, description quality, and document-design token compliance.
 
 **The denylist is not stored in this repository.** Publishing a list of the very names and employers
@@ -153,9 +182,13 @@ bash scripts/check-principles.sh && bash scripts/check-structure.sh
 
 ## Adding a new plugin
 
-1. Add the skill at `skills/<skill-name>/SKILL.md`, with any cited documents in `references/`
+1. Add the skill at `skills/<skill-name>/SKILL.md`, with any cited documents in `references/`.
+   Keep it self-contained: copy in every file it cites rather than reaching into a sibling
+   skill, because a plugin directory has to stand alone.
 2. Create `<plugin-name>/.claude-plugin/plugin.json`
-3. Symlink `<plugin-name>/skills/<skill-name>` to `../../skills/<skill-name>`
+3. Add the skill to that plugin's list in `scripts/sync-plugins.sh`, then run it
 4. Register the plugin in `.claude-plugin/marketplace.json`
+5. Check the description passes `python3 evals/run.py --suite description` — the eval suites
+   auto-discover new skills
 
 For full authoring guidance, see the [official plugins documentation](https://code.claude.com/docs/en/plugins).

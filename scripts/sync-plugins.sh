@@ -22,7 +22,7 @@ skills_src="$root/skills"
 
 # plugin-dir -> space-separated skill names it packages
 declare -a PLUGINS=(
-  "job-search:job-application-assistant job-search-quality"
+  "job-search:job-application-assistant job-search-quality apply-jobs-workflow cv-attach-workflow trello-card-rules job-scraper upskill first-principles-startup"
   "document-design:document-design"
   "communication-style:communication-style"
 )
