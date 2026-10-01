@@ -161,8 +161,11 @@ CI runs these on every push and pull request:
 - `scripts/check-structure.sh` — fails on a symlink under `skills/` or a plugin directory, on a
   plugin copy that has drifted from its canonical skill, on a plugin with no skills, or on a
   `SKILL.md` citing a `references/` file that does not exist.
-- `python3 evals/run.py` — 157 assertions across frontmatter validity, reference integrity,
+- `python3 evals/run.py` — 176 assertions across frontmatter validity, reference integrity,
   config-key documentation, description quality, and document-design token compliance.
+  The document-design suite also checks the CV template named by
+  `integrations.yaml` — the document you actually send to employers. It reads
+  `$JOB_SEARCH_HOME`, so it skips on CI where that does not exist.
 
 **The denylist is not stored in this repository.** Publishing a list of the very names and employers
 you want to keep private defeats the purpose, so it is supplied at run time from outside:

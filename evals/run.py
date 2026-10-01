@@ -17,6 +17,7 @@ Run with LLM judge (requires OPENAI_API_KEY):
 import argparse
 import json
 import os
+import pathlib
 import re
 import subprocess
 import sys
@@ -399,7 +400,84 @@ def run_document_design_evals() -> EvalSuite:
     else:
         suite.add("invalid_fixture.exists", False, "invalid_cv.html not found")
 
+    check_live_cv(suite)
     return suite
+
+
+def check_live_cv(suite: EvalSuite) -> None:
+    """Check the CV template the candidate actually ships, if one is configured.
+
+    The fixtures prove the rules work; this proves the rules hold for the
+    document that gets sent to employers. It reads $JOB_SEARCH_HOME, which is
+    private and absent on CI, so it skips rather than fails there — the same
+    pattern scripts/check-principles.sh uses for its denylist.
+    """
+    import os
+
+    home = pathlib.Path(os.environ.get("JOB_SEARCH_HOME", Path.home() / ".config/job-search"))
+    cfg = home / "integrations.yaml"
+    if not cfg.exists():
+        suite.add("live_cv.skipped", True, f"no integrations.yaml at {cfg}")
+        return
+
+    try:
+        cv_template = (yaml.safe_load(cfg.read_text()) or {}).get("cv_template")
+    except yaml.YAMLError as e:
+        suite.add("live_cv.config", False, f"integrations.yaml does not parse: {e}")
+        return
+
+    if not cv_template:
+        suite.add("live_cv.skipped", True, "cv_template not set in integrations.yaml")
+        return
+
+    cv = home / "cv" / cv_template
+    if not cv.exists():
+        suite.add("live_cv.exists", False, f"cv_template set but missing: {cv}")
+        return
+
+    html = cv.read_text(encoding="utf-8")
+
+    def check(name: str, passed: bool, failure: str) -> None:
+        suite.add(name, passed, "" if passed else failure)
+
+    for token in REQUIRED_DESIGN_TOKENS:
+        defined = f"{token}:" in html
+        used = f"var({token})" in html
+        check(f"live_cv.token.{token}", defined and used,
+              "not defined in :root" if not defined else "defined but never used via var()")
+
+    check("live_cv.dark_theme",
+          "html[data-theme='dark']" in html or 'html[data-theme="dark"]' in html,
+          "missing dark theme override")
+
+    for needle, label in [("@media print", "print block"),
+                          ("@page", "@page rule"),
+                          ("print-color-adjust", "colour adjust"),
+                          ("break-inside:avoid", "break-inside avoid")]:
+        check(f"live_cv.print.{label}", needle in html, f"missing {label}")
+
+    check("live_cv.layout.max_width", "max-width:820px" in html.replace(" ", ""),
+          "page max-width is not 820px")
+    check("live_cv.typography.font_stack",
+          "-apple-system" in html and "BlinkMacSystemFont" in html,
+          "missing system font stack")
+
+    main = html.split("@media print")[0]
+    for pattern, desc in ANTI_PATTERNS:
+        check(f"live_cv.anti.{desc}", not re.search(pattern, main, re.IGNORECASE),
+              f"anti-pattern present: {desc}")
+
+    # Hardcoded colours are only legitimate inside the token definitions and the
+    # dark-theme override, so strip those before scanning.
+    chk = re.sub(r"@media print.*", "", html, flags=re.DOTALL)
+    chk = re.sub(r":root\s*\{[^}]*\}", "", chk, flags=re.DOTALL)
+    chk = re.sub(r"html\[data-theme='dark'\]\s*\{[^}]*\}", "", chk, flags=re.DOTALL)
+    chk = re.sub(r"box-shadow[^;]*;", "", chk)
+    chk = re.sub(r"var\([^)]+\)", "", chk)
+    hexes = re.findall(r"#[0-9a-fA-F]{3,8}", chk)
+    rgbs = re.findall(r"rgba?\(\s*\d+", chk)
+    check("live_cv.anti.Hardcoded hex color", not hexes, f"hardcoded hex outside tokens: {hexes}")
+    check("live_cv.anti.Hardcoded rgb/rgba color", not rgbs, f"hardcoded rgb/rgba outside tokens: {rgbs}")
 
 
 def run_golden_evals(llm_judge: bool = False) -> EvalSuite:
