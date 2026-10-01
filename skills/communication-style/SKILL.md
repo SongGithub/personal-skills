@@ -1,6 +1,6 @@
 ---
 name: communication-style
-description: Applies a direct, plain-spoken, Australian-English writing style to any text Claude drafts — chat replies, emails, Slack/Teams messages, tickets, PR and commit descriptions, docs. Use whenever drafting prose, not just visual or code artifacts. Skip when the user explicitly asks for a different tone or voice for a specific piece of writing.
+description: Applies a direct, plain-spoken, Australian-English communication style to any text drafted — chat replies, emails, Slack/Teams messages, tickets, PR and commit descriptions, docs. Use whenever drafting prose, not just visual or code artifacts. Skip when the user explicitly asks for a different tone or voice.
 user-invocable: true
 ---
 

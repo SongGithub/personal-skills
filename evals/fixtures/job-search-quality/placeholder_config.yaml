@@ -1,0 +1,10 @@
+# Fixture: config with placeholder values (should be rejected)
+preferences:
+  currency: AUD
+  minimum_base_salary_excluding_super_aud: 0
+  preferred_title_levels: []
+  preferred_title_families: []
+  minimum_equivalent_scope: ""
+  excluded_title_levels: []
+  salary_unknown_policy: ""
+  maximum_new_jira_issues_per_run: 0
