@@ -19,6 +19,62 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 /plugin install communication-style@personal-skills
 ```
 
+## How to install for OpenClaw
+
+OpenClaw has two separate systems, and mixing them up is the usual failure:
+
+| System | Manifest | Install command | Updates |
+|--------|---------|-----------------|---------|
+| **Plugins** | `.claude-plugin/marketplace.json` + `plugin.json` | `openclaw plugins install --marketplace ...` | `openclaw plugins update --all` |
+| **Skills** | `SKILL.md` | `openclaw skills install ...` | ClawHub installs only |
+
+Use the **plugins** path, because this repository is a marketplace.
+
+```bash
+openclaw plugins install --marketplace <owner>/personal-skills job-search
+openclaw plugins install --marketplace <owner>/personal-skills document-design
+openclaw plugins install --marketplace <owner>/personal-skills communication-style
+```
+
+Check what a marketplace publishes before installing:
+
+```bash
+openclaw plugins marketplace list <owner>/personal-skills
+```
+
+Then keep it current:
+
+```bash
+openclaw plugins update --all --dry-run   # preview
+openclaw plugins update --all             # apply
+```
+
+### Marketplace source formats
+
+Only `owner/repo` is accepted. These all fail with `unsupported marketplace source`:
+
+```
+git:github.com/<owner>/personal-skills@main
+github.com/<owner>/personal-skills
+github:<owner>/personal-skills
+```
+
+**Ref pinning is not supported.** A marketplace install tracks the repository's default
+branch, so there is no way to pin a tag or branch. Merge to the default branch before
+installing if you want a particular revision.
+
+### Two mistakes that produce confusing errors
+
+**`openclaw plugins install <spec>` without `--marketplace`** treats the argument as an
+npm-style plugin package and fails with `extracted package missing package.json`. That
+error means the manifest was missing, not that the repo is broken — pass `--marketplace`
+and a plugin name.
+
+**`openclaw skills install git:<owner>/<repo>`** fails because git installs expect
+`SKILL.md` at the repository root, and this repo keeps skills under `skills/<skill-name>/`.
+One repository per skill would be required, and even then skills only auto-update when
+installed from ClawHub.
+
 ## Layout
 
 Skills live at the repository root under `skills/<skill-name>/`, the cross-tool
