@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bad CV - Violates design system</title>
+<style>
+/* VIOLATION: Hardcoded colors instead of design tokens */
+body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; font-size: 16px; }
+.page { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; } /* VIOLATION: wrong max-width, no page surround */
+/* VIOLATION: no accent token, hardcoded green everywhere */
+h1 { color: #2e7d32; font-size: 32px; }
+h2 { color: #2e7d32; border-bottom: 2px solid #2e7d32; }
+.skill-tag { background: #2e7d32; color: white; padding: 5px 10px; } /* VIOLATION: solid accent fill, no accent-soft */
+/* VIOLATION: multi-column layout */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+/* VIOLATION: table for layout */
+.role-table { width: 100%; }
+.role-table td { padding: 10px; border: 1px solid #ddd; }
+/* VIOLATION: no print styles at all */
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Jane Smith</h1>
+  <h2>Summary</h2>
+  <p>Experienced engineer looking for new opportunities.</p>
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-tag">Python</div>
+    <div class="skill-tag">Docker</div>
+    <div class="skill-tag">Kubernetes</div>
+  </div>
+  <h2>Experience</h2>
+  <table class="role-table">
+    <tr><td>2020-2023</td><td>Company</td><td>Did things</td></tr>
+  </table>
+</div>
+</body>
+</html>

@@ -9,6 +9,7 @@ Run specific suite:
     python3 evals/run.py --suite static
     python3 evals/run.py --suite config
     python3 evals/run.py --suite description
+    python3 evals/run.py --suite document-design
 
 Run with LLM judge (requires OPENAI_API_KEY):
     python3 evals/run.py --suite golden --llm-judge
@@ -28,6 +29,47 @@ ROOT = Path(__file__).parent.parent
 SKILLS_DIR = ROOT / "skills"
 EVALS_DIR = ROOT / "evals"
 FIXTURES_DIR = EVALS_DIR / "fixtures"
+
+# Document Design required tokens (from SKILL.md)
+REQUIRED_DESIGN_TOKENS = [
+    "--doc-background",
+    "--doc-background-mid",
+    "--doc-border-light",
+    "--doc-text-primary",
+    "--doc-text-secondary",
+    "--doc-accent",
+    "--doc-accent-soft",
+]
+
+REQUIRED_CLASSES = [
+    ".page",
+    ".name",
+    ".tagline",
+    ".contact",
+    "h2.section-title",
+    ".summary",
+    ".skills",
+    ".skill",
+    ".role",
+    ".role-head",
+    ".role-title",
+    ".company",
+    ".role-meta",
+    ".role-context",
+    "ul.bullets",
+    ".subrole",
+    ".earlier",
+]
+
+# Anti-patterns that should NOT appear in a compliant CV
+# Note: flex-wrap is used legitimately in this design system (.contact, .skills, .role-head)
+# for responsive wrapping - only CSS Grid is considered an anti-pattern for layout
+ANTI_PATTERNS = [
+    (r"display\s*:\s*grid", "CSS Grid layout (multi-column)"),
+    (r"grid-template-columns", "Grid columns"),
+    (r"<table\b", "HTML table for layout"),
+    # border-collapse is not always present (inline borders used instead)
+]
 
 @dataclass
 class EvalResult:
@@ -204,16 +246,172 @@ def run_description_evals() -> EvalSuite:
 
     return suite
 
+def run_document_design_evals() -> EvalSuite:
+    """Document Design compliance checks for generated CV HTML"""
+    suite = EvalSuite("document-design")
+
+    skill_dir = SKILLS_DIR / "document-design"
+    template_path = skill_dir / "references" / "cv-template.html"
+    valid_fixture = FIXTURES_DIR / "document-design" / "valid_cv.html"
+    invalid_fixture = FIXTURES_DIR / "document-design" / "invalid_cv.html"
+
+    # 1. Template exists and has required tokens
+    if template_path.exists():
+        template = template_path.read_text(encoding="utf-8")
+        for token in REQUIRED_DESIGN_TOKENS:
+            if token in template:
+                suite.add(f"template.token.{token}", True)
+            else:
+                suite.add(f"template.token.{token}", False, f"Missing design token: {token}")
+
+        # Check dark theme override
+        if "html[data-theme='dark']" in template or 'html[data-theme="dark"]' in template:
+            suite.add("template.dark_theme", True)
+        else:
+            suite.add("template.dark_theme", False, "Missing dark theme override")
+
+        # Check print media query
+        if "@media print" in template:
+            suite.add("template.print_styles", True)
+        else:
+            suite.add("template.print_styles", False, "Missing @media print block")
+
+        # Check key print rules
+        print_checks = [
+            ("@page", "@page rule"),
+            ("print-color-adjust", "print-color-adjust"),
+            ("break-inside:avoid", "break-inside avoid"),
+            ("display:none", "interactive chrome hidden"),
+        ]
+        for pattern, desc in print_checks:
+            if pattern in template:
+                suite.add(f"template.print.{desc}", True)
+            else:
+                suite.add(f"template.print.{desc}", False, f"Missing print rule: {desc}")
+
+    else:
+        suite.add("template.exists", False, "cv-template.html not found")
+
+    # 2. Valid fixture passes all checks
+    if valid_fixture.exists():
+        html = valid_fixture.read_text(encoding="utf-8")
+
+        # Design tokens present
+        for token in REQUIRED_DESIGN_TOKENS:
+            if f"var({token})" in html or token in html:
+                suite.add(f"valid_fixture.token.{token}", True)
+            else:
+                suite.add(f"valid_fixture.token.{token}", False, f"Missing token usage: {token}")
+
+        # Required classes present
+        for cls in REQUIRED_CLASSES:
+            if cls in html:
+                suite.add(f"valid_fixture.class.{cls}", True)
+            else:
+                suite.add(f"valid_fixture.class.{cls}", False, f"Missing class: {cls}")
+
+        # Anti-patterns absent (check only main style block, not @media print)
+        main_style = html.split("@media print")[0] if "@media print" in html else html
+        for pattern, desc in ANTI_PATTERNS:
+            if re.search(pattern, main_style, re.IGNORECASE):
+                suite.add(f"valid_fixture.anti.{desc}", False, f"Anti-pattern found in main styles: {desc}")
+            else:
+                suite.add(f"valid_fixture.anti.{desc}", True)
+
+        # Hardcoded colors check (exclude @media print, :root token definitions, dark theme block, box-shadow, var() references)
+        # Remove @media print block, :root block, dark theme block, box-shadow lines, and var() references
+        check_html = re.sub(r"@media print.*", "", html, flags=re.DOTALL)
+        check_html = re.sub(r":root\s*\{[^}]*\}", "", check_html, flags=re.DOTALL)
+        check_html = re.sub(r"html\[data-theme='dark'\]\s*\{[^}]*\}", "", check_html, flags=re.DOTALL)
+        check_html = re.sub(r"box-shadow[^;]*;", "", check_html)
+        check_html = re.sub(r"var\([^)]+\)", "", check_html)
+        # Check for hardcoded hex colors in remaining
+        hex_colors = re.findall(r"#[0-9a-fA-F]{3,8}", check_html)
+        if hex_colors:
+            suite.add("valid_fixture.anti.Hardcoded hex color", False, f"Hardcoded hex colors in main styles: {hex_colors}")
+        else:
+            suite.add("valid_fixture.anti.Hardcoded hex color", True)
+
+        rgb_colors = re.findall(r"rgba?\(\s*\d+", check_html)
+        if rgb_colors:
+            suite.add("valid_fixture.anti.Hardcoded rgb/rgba color", False, f"Hardcoded rgb/rgba in main styles: {rgb_colors}")
+        else:
+            suite.add("valid_fixture.anti.Hardcoded rgb/rgba color", True)
+
+        # Layout constraints
+        if "max-width:820px" in html.replace(" ", "") or "max-width: 820px" in html:
+            suite.add("valid_fixture.layout.max_width", True)
+        else:
+            suite.add("valid_fixture.layout.max_width", False, "Page max-width not 820px")
+
+        # Typography: system font stack
+        if "-apple-system" in html and "BlinkMacSystemFont" in html:
+            suite.add("valid_fixture.typography.font_stack", True)
+        else:
+            suite.add("valid_fixture.typography.font_stack", False, "Missing system font stack")
+
+        # Print styles present
+        if "@media print" in html:
+            suite.add("valid_fixture.print_styles", True)
+        else:
+            suite.add("valid_fixture.print_styles", False, "Missing @media print in valid fixture")
+
+    else:
+        suite.add("valid_fixture.exists", False, "valid_cv.html not found")
+
+    # 3. Invalid fixture fails expected checks
+    if invalid_fixture.exists():
+        html = invalid_fixture.read_text(encoding="utf-8")
+
+        # Should have anti-patterns (check whole file since it's intentionally bad)
+        violations_found = 0
+        for pattern, desc in ANTI_PATTERNS:
+            # Skip commented out patterns
+            if pattern.startswith("#"):
+                continue
+            if re.search(pattern, html, re.IGNORECASE):
+                violations_found += 1
+                suite.add(f"invalid_fixture.detects.{desc}", True)
+            else:
+                suite.add(f"invalid_fixture.detects.{desc}", False, f"Should detect: {desc}")
+
+        # Hardcoded colors in invalid fixture
+        hex_colors = re.findall(r"#[0-9a-fA-F]{3,8}", html)
+        if hex_colors:
+            suite.add("invalid_fixture.detects.Hardcoded hex color", True)
+        else:
+            suite.add("invalid_fixture.detects.Hardcoded hex color", False, "Should detect hardcoded hex colors")
+
+        # invalid fixture has no rgb/rgba - that's fine, just verify it doesn't have them
+        rgb_colors = re.findall(r"rgba?\(\s*\d+", html)
+        if not rgb_colors:
+            suite.add("invalid_fixture.no_rgba_colors", True)
+        else:
+            suite.add("invalid_fixture.no_rgba_colors", False, "Unexpected rgb/rgba")
+
+        # Should be missing design tokens
+        tokens_missing = sum(1 for token in REQUIRED_DESIGN_TOKENS if token not in html)
+        if tokens_missing >= len(REQUIRED_DESIGN_TOKENS) * 0.5:
+            suite.add("invalid_fixture.missing_tokens", True)
+        else:
+            suite.add("invalid_fixture.missing_tokens", False, "Invalid fixture should not have design tokens")
+
+    else:
+        suite.add("invalid_fixture.exists", False, "invalid_cv.html not found")
+
+    return suite
+
+
 def run_golden_evals(llm_judge: bool = False) -> EvalSuite:
     """Golden workflow tests with fixtures"""
     suite = EvalSuite("golden")
 
     if not llm_judge:
         # Check fixtures exist
-        for skill_name in ["job-search-quality", "job-application-assistant"]:
+        for skill_name in ["job-search-quality", "job-application-assistant", "document-design"]:
             fix_dir = FIXTURES_DIR / skill_name
             if fix_dir.exists():
-                fixtures = list(fix_dir.glob("*.yaml"))
+                fixtures = list(fix_dir.glob("*.yaml")) + list(fix_dir.glob("*.html"))
                 if fixtures:
                     suite.add(f"{skill_name}.fixtures", True, f"{len(fixtures)} fixtures")
                 else:
@@ -225,16 +423,19 @@ def run_golden_evals(llm_judge: bool = False) -> EvalSuite:
 
     # LLM-judged evals would go here
     # For now, just report fixtures
-    for skill_name in ["job-search-quality", "job-application-assistant"]:
+    for skill_name in ["job-search-quality", "job-application-assistant", "document-design"]:
         fix_dir = FIXTURES_DIR / skill_name
         if fix_dir.exists():
             for fixture in fix_dir.glob("*.yaml"):
                 suite.add(f"{skill_name}.fixture:{fixture.stem}", True, "Fixture available for LLM judge")
+            for fixture in fix_dir.glob("*.html"):
+                suite.add(f"{skill_name}.fixture:{fixture.stem}", True, "Fixture available for LLM judge")
     return suite
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run Agent Skills evals")
-    parser.add_argument("--suite", choices=["all", "static", "config", "description", "golden"],
+    parser.add_argument("--suite", choices=["all", "static", "config", "description", "document-design", "golden"],
                         default="all", help="Which eval suite to run")
     parser.add_argument("--llm-judge", action="store_true", help="Enable LLM-judged golden evals")
     parser.add_argument("--json", action="store_true", help="Output JSON results")
@@ -247,6 +448,8 @@ def main():
         suites.append(run_config_evals())
     if args.suite in ("all", "description"):
         suites.append(run_description_evals())
+    if args.suite in ("all", "document-design"):
+        suites.append(run_document_design_evals())
     if args.suite in ("all", "golden"):
         suites.append(run_golden_evals(args.llm_judge))
 

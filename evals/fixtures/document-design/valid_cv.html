@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV - John Doe</title>
+<style>
+:root{
+  --doc-background:#ffffff; --doc-background-mid:#eef0ee;
+  --doc-border-light:#e3e3e0; --doc-text-primary:#1d1f22; --doc-text-secondary:#5f6368;
+  --doc-accent:#1f6f5c; --doc-accent-soft:#e7f1ee;
+}
+html[data-theme='dark']{ --doc-accent:#4fbfa3; --doc-accent-soft:#16332b; }
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--doc-background-mid); color:var(--doc-text-primary); line-height:1.38; font-size:12.8px;
+  -webkit-font-smoothing:antialiased}
+.page{max-width:820px;margin:24px auto;background:var(--doc-background);padding:38px 42px 40px;
+  box-shadow:0 2px 14px rgba(0,0,0,.10);border-radius:4px}
+header{border-bottom:2px solid var(--doc-accent);padding-bottom:12px;margin-bottom:16px}
+.name{font-size:28px;font-weight:700;letter-spacing:-.5px;margin:0}
+.tagline{font-size:14px;color:var(--doc-accent);font-weight:600;margin:4px 0 8px}
+.contact{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--doc-text-secondary)}
+.contact a{color:var(--doc-text-secondary);text-decoration:none}
+section{margin-bottom:15px}
+h2.section-title{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;
+  color:var(--doc-accent);margin:0 0 8px;padding-bottom:3px;border-bottom:1px solid var(--doc-border-light)}
+.summary{font-size:12.5px;margin:0;line-height:1.45}
+.skills{display:flex;flex-wrap:wrap;gap:5px}
+.skill{font-size:11px;padding:2px 8px;border-radius:3px;background:var(--doc-accent-soft);
+  border:1px solid var(--doc-border-light)}
+.role{margin-bottom:12px}.role:last-child{margin-bottom:0}
+.role-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.role-title{font-size:13.5px;font-weight:700;margin:0}
+.role-title .company{color:var(--doc-accent)}
+.role-meta{font-size:11px;color:var(--doc-text-secondary);white-space:nowrap;font-weight:500}
+.role-context{font-size:12px;color:var(--doc-text-secondary);margin:2px 0 5px}
+ul.bullets{margin:3px 0 0;padding-left:16px}
+ul.bullets li{margin-bottom:3px;font-size:12px}
+ul.bullets li::marker{color:var(--doc-accent)}
+.subrole{margin:8px 0 0}
+.subrole-title{font-size:12px;font-weight:600;margin:0}
+.subrole-title .sr-meta{font-weight:400;color:var(--doc-text-secondary);font-size:11px}
+.earlier{font-size:12px;margin:0}.earlier strong{font-weight:600}
+.note{font-size:10.5px;color:var(--doc-text-secondary);font-style:italic;margin-top:2px}
+@media screen and (max-width:640px){ .page{padding:24px 18px;margin:8px} .name{font-size:22px} }
+@media print{
+  @page{size:letter;margin:0}
+  html,body{background:#fff !important}
+  body{margin:0;padding:0;font-size:10pt;line-height:1.3;
+    print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .page{max-width:100% !important;width:100% !important;margin:0;padding:.38in .45in;
+    box-shadow:none !important;border-radius:0}
+  section{break-inside:auto;margin-bottom:10px}
+  .role,.subrole,header{break-inside:avoid}
+  header{padding-bottom:8px;margin-bottom:10px}
+  .name{font-size:20pt} .tagline{font-size:10pt;margin:2px 0 5px} .contact{font-size:8pt}
+  h2.section-title{font-size:8pt;margin:0 0 5px;padding-bottom:2px}
+  .summary{font-size:9pt} .skill{font-size:7.8pt;padding:1px 6px}
+  .role{margin-bottom:8px} .role-title{font-size:10pt} .role-meta{font-size:8pt}
+  .role-context{font-size:8.5pt;margin:1px 0 3px}
+  ul.bullets{margin:2px 0 0} ul.bullets li{font-size:8.5pt;margin-bottom:1.5px;break-inside:avoid}
+  .subrole{margin-top:5px} .subrole-title{font-size:8.8pt} .earlier{font-size:8.5pt} .note{font-size:7.5pt}
+  button,[role="button"],.interactive-only{display:none !important}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1 class="name">John Doe</h1>
+    <p class="tagline">Senior Platform Engineer — Kubernetes · AWS · Terraform</p>
+    <div class="contact">
+      <span>Melbourne, Australia</span> <span>&bull;</span>
+      <span><a href="mailto:john@example.com">john@example.com</a></span> <span>&bull;</span>
+      <span>0400 000 000</span> <span>&bull;</span>
+      <span><a href="https://linkedin.com/in/johndoe">linkedin.com/in/johndoe</a></span>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="section-title">Summary</h2>
+    <p class="summary">Platform engineer with 8 years building and operating Kubernetes platforms at scale. Led migration of 200+ services to EKS, reduced deployment time 80%. Seeking to apply platform expertise in a product-focused organisation.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Core Skills</h2>
+    <div class="skills">
+      <span class="skill">Kubernetes (EKS, GKE)</span>
+      <span class="skill">AWS (EC2, VPC, IAM)</span>
+      <span class="skill">Terraform</span>
+      <span class="skill">Prometheus / Grafana</span>
+      <span class="skill">Go / Python</span>
+      <span class="skill">CI/CD (GitHub Actions, ArgoCD)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Experience</h2>
+    <div class="role">
+      <div class="role-head">
+        <p class="role-title">Senior Platform Engineer — <span class="company">Example Corp</span></p>
+        <span class="role-meta">2021 – Present · Melbourne</span>
+      </div>
+      <p class="role-context">Platform team of 12 supporting 200+ engineers across 5 product teams.</p>
+      <ul class="bullets">
+        <li>Designed and operated EKS clusters serving 500+ pods with 99.95% availability.</li>
+        <li>Built self-service deployment platform reducing service onboarding from days to hours.</li>
+        <li>Implemented SLO framework with Prometheus/Grafana; reduced alert noise by 70%.</li>
+        <li>Led Terraform migration managing 50+ AWS accounts via control tower.</li>
+      </ul>
+    </div>
+    <div class="role">
+      <div class="role-head">
+        <p class="role-title">Site Reliability Engineer — <span class="company">Tech Startup</span></p>
+        <span class="role-meta">2018 – 2021 · Sydney</span>
+      </div>
+      <p class="role-context">First SRE hire; built observability and incident response from scratch.</p>
+      <ul class="bullets">
+        <li>Established on-call rotation and runbooks for 15 critical services.</li>
+        <li>Migrated logging to structured JSON + Loki; cut MTTR by 50%.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Education</h2>
+    <p class="earlier"><strong>Bachelor of Computer Science</strong> — University of Melbourne</p>
+  </section>
+</div>
+</body>
+</html>
