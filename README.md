@@ -81,15 +81,27 @@ Skills live at the repository root under `skills/<skill-name>/`, the cross-tool
 [Agent Skills](https://agentskills.io) layout, so Claude Code, Codex and other harnesses read the
 same tree. Longer documents that a skill cites live in that skill's `references/` directory.
 
-Each plugin directory holds a manifest plus symlinks into `skills/`, which is what the Claude Code
-marketplace resolves:
+Each plugin directory holds a manifest plus **a real copy** of the skills it packages:
 
 ```
-skills/<skill-name>/SKILL.md          the skill itself
-skills/<skill-name>/references/*      documents the skill cites
-<plugin>/.claude-plugin/plugin.json   plugin manifest
-<plugin>/skills/<skill-name>          symlink into ../../skills/
+skills/<skill-name>/SKILL.md              the skill itself (canonical source)
+skills/<skill-name>/references/*          documents the skill cites
+<plugin>/.claude-plugin/plugin.json       plugin manifest
+<plugin>/skills/<skill-name>/             a copy, byte-identical to skills/<skill-name>/
 ```
+
+**Plugin directories must be self-contained — no symlinks.** Claude Code clones the whole
+repository, so a relative symlink resolves fine there. Other consumers do not: OpenClaw
+copies a single plugin directory out of the marketplace and discards the rest of the repo,
+so `../../skills/<name>` resolves to a path that no longer exists and the plugin loads with
+**zero skills and no error**. Keep `skills/` canonical and regenerate the copies:
+
+```bash
+./scripts/sync-plugins.sh     # after editing anything under skills/
+```
+
+`scripts/check-structure.sh` fails if a copy drifts from the source, or if a symlink
+reappears under `skills/` or a plugin directory.
 
 ## Personal data is deliberately not in this repository
 
@@ -112,13 +124,16 @@ guessing or falling back to defaults.
 
 ## Guard rails
 
-CI runs two checks on every push and pull request:
+CI runs these on every push and pull request:
 
 - `scripts/check-principles.sh` — generic rules that need no configuration (real email addresses,
   phone numbers, currency amounts, credential prefixes) plus a private denylist of names, employers
   and personal circumstances.
-- `scripts/check-structure.sh` — fails on broken symlinks, a plugin with no skills, or a
+- `scripts/check-structure.sh` — fails on a symlink under `skills/` or a plugin directory, on a
+  plugin copy that has drifted from its canonical skill, on a plugin with no skills, or on a
   `SKILL.md` citing a `references/` file that does not exist.
+- `python3 evals/run.py` — 112 assertions across frontmatter validity, reference integrity,
+  config-key documentation, description quality, and document-design token compliance.
 
 **The denylist is not stored in this repository.** Publishing a list of the very names and employers
 you want to keep private defeats the purpose, so it is supplied at run time from outside:

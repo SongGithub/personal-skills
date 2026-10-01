@@ -1,0 +1,11 @@
+# Example job-search preferences.
+# Copy to ~/.config/job-search/preferences.yaml and replace the placeholders.
+# The real file is private and must not be committed to this repository.
+currency: AUD
+minimum_base_salary_excluding_super_aud: 0          # minimum base pay, excluding superannuation
+preferred_title_levels: []                          # e.g. [<level>, <level>]
+preferred_title_families: []                        # e.g. [<job family>, <job family>]
+minimum_equivalent_scope: ""                        # one line describing the minimum acceptable scope
+excluded_title_levels: []                           # titles rejected outright
+salary_unknown_policy: ""                           # what to do when no salary is advertised
+maximum_new_jira_issues_per_run: 0                  # cap per scheduled run
