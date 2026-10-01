@@ -28,7 +28,7 @@ report() {
 # skip this script: it contains the patterns it searches for
 scan() {
   local hits
-  hits="$(grep -rInE --exclude-dir=.git --exclude-dir=out --exclude-dir=evals \
+  hits="$(grep -rInE --exclude-dir=.git --exclude-dir=out \
     --exclude=check-principles.sh -- "$2" "$root" 2>/dev/null || true)"
   [ -n "$hits" ] && report "$1" "$hits"
   return 0
@@ -36,12 +36,12 @@ scan() {
 
 echo "== generic checks =="
 
-emails="$(grep -rInE --exclude-dir=.git --exclude-dir=out --exclude-dir=evals \
+emails="$(grep -rInE --exclude-dir=.git --exclude-dir=out \
   -- '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' "$root" 2>/dev/null \
   | grep -vE 'example\.(com|org|net)|@example' || true)"
 [ -n "$emails" ] && report "real email address" "$emails"
 
-phones="$(grep -rInE --exclude-dir=.git --exclude-dir=out --exclude-dir=evals \
+phones="$(grep -rInE --exclude-dir=.git --exclude-dir=out \
   -- '(\+61[ -]?|\b0)[0-9]{3}[ -][0-9]{3}[ -][0-9]{3}\b' "$root" 2>/dev/null \
   | grep -vE '0{3}[ -]0{3}' || true)"
 [ -n "$phones" ] && report "phone number" "$phones"

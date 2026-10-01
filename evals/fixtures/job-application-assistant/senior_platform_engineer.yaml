@@ -2,8 +2,8 @@
 job_posting:
   title: "Senior Platform Engineer"
   company: "Example Corp"
-  location: "Melbourne, Hybrid"
-  salary_range: "$180,000 - $220,000 + super"
+  location: "City, Hybrid"
+  salary_range: "<base salary range in AUD> + super"
   description: |
     We are looking for a Senior Platform Engineer to join our Platform Engineering team.
     You will own the reliability and scalability of our core platform serving 50+ engineers.

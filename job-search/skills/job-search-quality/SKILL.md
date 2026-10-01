@@ -31,6 +31,8 @@ Title words are a screening cue, not proof of level. A role with a generic title
 
 For each selected role, save its exact source URL, company, title, location/work pattern, posted date and salary as shown, a nonempty evidence-based fit rationale, explicit gaps/risks, and the **complete source job description through its final paragraph**. Do not turn inference about salary, seniority, stability, or growth path into a fact. Read the issue back after writing; compare the copied description with the source, including the final 200 characters. An issue with blank fit/gaps or a truncated JD is incomplete and must be fixed before reporting success.
 
+Also record the **company head count** in the `people count` field, as text with the source and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`. Research it when the record is created rather than leaving it blank; a headline number with its source is far more useful than an unsourced figure. If head count genuinely cannot be found, say so in the field rather than guessing.
+
 ## CV evidence gate
 
 - Tailor from documented experience. Check role-specific claims against the private profile; do not claim required skills merely because they appear in the ad. If a listed requirement is unproven, record it as a gap rather than a CV skill.
