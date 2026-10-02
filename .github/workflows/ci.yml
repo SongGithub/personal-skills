@@ -24,3 +24,18 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify symlinks and references
         run: bash scripts/check-structure.sh
+
+  evals:
+    name: Skill evals
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pyyaml
+      - name: Run eval suites
+        # static, config, description, document-design and golden fixtures.
+        # The LLM judge is skipped without --llm-judge, so CI stays deterministic.
+        run: python3 evals/run.py --suite all
