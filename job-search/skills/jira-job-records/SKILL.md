@@ -102,6 +102,31 @@ incomplete record.
 - Upload the replacement first, verify it landed with the expected name and size, then delete the
   superseded copy. Do not leave two versions attached.
 
+## Verdicts must follow from the reasons
+
+A verdict is only useful if the reasons stated support it. Before writing one:
+
+- A **positive** reason (a stable employer, a familiar domain, overlapping stack) can never support
+  a `Deprioritise` or `Dead-lead` verdict. If every reason listed is positive, then either the
+  verdict is wrong or the real reason is missing.
+- State the **actual ground**: stack or discipline mismatch, location, salary below the floor, or a
+  named exclusion rule. A verdict with no stated ground is a placeholder, not an assessment.
+- Never inherit a verdict from a criterion that has since changed. If the original objection no
+  longer applies, the verdict must be re-derived, not left standing.
+
+## Re-validate when criteria change
+
+Records are written once and then rot. When `preferences.yaml` changes (title levels, salary floor,
+excluded stacks) or `profile.md` gains a material new fact:
+
+- Re-read the fit rationale and gaps of every record in the active lanes: To Do, Applied, Interview
+  and Backlog.
+- Flag any record that cites a criterion which no longer applies, for example a level objection
+  after that level became acceptable, or that asserts a skill the profile does not contain.
+- Fix the reasoning. Do **not** simply delete the stale objection: removing it can leave the verdict
+  unsupported, which is worse than the original error.
+- Leave Dead-leads alone. They are inert.
+
 ## Related skills
 
 - `job-search-quality` — screening, salary and title criteria, and the evidence gate that
