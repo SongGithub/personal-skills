@@ -126,6 +126,9 @@ excluded stacks) or `profile.md` gains a material new fact:
 - Fix the reasoning. Do **not** simply delete the stale objection: removing it can leave the verdict
   unsupported, which is worse than the original error.
 - Leave Dead-leads alone. They are inert.
+- **Ask before deleting.** If a note or CV claim looks unverified, confirm with the candidate
+  rather than removing it. A profile summary omits real experience, so absence there is not
+  evidence that the claim is false. Record confirmed facts back into the profile.
 
 ## Related skills
 

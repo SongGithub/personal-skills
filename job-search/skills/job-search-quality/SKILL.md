@@ -42,6 +42,12 @@ Also record the **company head count** in the `people count` field, as text with
 ## CV evidence gate
 
 - Tailor from documented experience. Check role-specific claims against the private profile; do not claim required skills merely because they appear in the ad. If a listed requirement is unproven, record it as a gap rather than a CV skill.
+- **Absence from the profile is not proof of absence.** Before removing a claim as unverified, ask
+  the candidate. The profile is a summary and lags real experience: tools used briefly, work on a
+  predecessor stack, or systems later replaced. Removing a true claim is as damaging as adding a
+  false one, and it silently understates the candidate. When they confirm it, record it in the
+  profile so the next review has it. Three separate claims were wrongly removed this way in one
+  session before the pattern was caught.
 - Keep employment dates accurate. Do not editorialise about why a role ended anywhere in the HTML or PDF. Search both final files for phrases that editorialise about a departure, then read the sentence in context, since a keyword check alone is insufficient.
 - Render and inspect **every page** of the final PDF. Use A4, legible type, sensible page balance, and no browser date/URL headers or footers. Verify text extraction, dates, and page count. A nearly blank trailing page fails even if the PDF has two pages.
 - Attach the HTML and PDF only after these checks. Read back the Jira attachment names and sizes. If replacing a defective attachment, upload the corrected files first, verify them, then remove the old copies so reviewers see one clear version.
