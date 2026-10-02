@@ -94,6 +94,18 @@ bullet points returned by the search:
 - **Medium** — adjacent role, or location and salary need checking
 - **Low** — significant skill gap, or on-site outside the configured locations with no remote
 
+**Check the discipline before the title.** A senior title is not a signal of the discipline. A
+role advertised as "Lead Engineer" or "Staff Engineer" can be a backend or
+application-engineering role whose central requirement is expert-level hands-on work in a
+language such as Java, Spring Boot, .NET or PHP. If the core requirement is a discipline or
+language outside the candidate's documented profile, rate it **Low** however senior the title,
+however familiar the domain. Payments, banking or platform-adjacent context does not turn a
+backend role into a platform role.
+
+Read `$JOB_SEARCH_HOME/targets.md` for the stacks to exclude, and the Core Skills in
+`profile.md` for what is actually proven. A requirement listed in the advert is not evidence the
+candidate has it.
+
 Apply the location filter from `references/search-queries.md`.
 
 ## Step 5 — Store
@@ -142,5 +154,6 @@ If the candidate decides to apply, add a row to `tracker_path`.
 3. **Honour the configured location tiers.** Skip on-site roles outside them unless opted in.
 4. **Only open roles.** Results are live, but skip anything visibly stale.
 5. **Pull the full description before evaluating or applying.**
-6. **Efficiency.** Filter on title, teaser and salary first; do not fetch every result.
+6. **Discipline over title.** Screen on the primary language and discipline in the requirements, never on the job title alone. A senior title on a stack the candidate does not have is a Low match.
+7. **Efficiency.** Filter on title, teaser and salary first; do not fetch every result.
 7. **Never query LinkedIn without an explicit opt-in.**

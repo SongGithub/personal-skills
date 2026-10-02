@@ -21,6 +21,15 @@ jira:
   # Credentials come from the environment, never from this file.
   email_env: JIRA_EMAIL
   api_token_env: JIRA_API_TOKEN
+  # Custom field ids are site-specific, so they live here rather than in the skill.
+  # List them via /rest/api/3/field, or read the issue screen configuration.
+  # Leave a field blank to skip it.
+  fields:
+    start_date: ""          # set to the date the record is created
+    source: ""              # where the opportunity came from, once the field exists
+    people_count: ""        # company head count
+  # Summary for a job record. No prefix — the project already scopes the record.
+  summary_format: "{title} — {company}"
 
 trello:
   board_id: ""              # found via `trello board:list`
