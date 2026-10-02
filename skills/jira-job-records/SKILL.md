@@ -3,6 +3,13 @@ name: jira-job-records
 description: How to file a job opportunity as a Jira issue — summary format, required fields, duplicate check, description formatting and attachments. Applies when tracker_backend is jira. Use when a job posting becomes a tracker record, and when creating or updating job records on a Jira board.
 ---
 
+## Constitution
+
+This repository is governed by a constitution at `.specify/memory/constitution.md`. It is
+binding and it supersedes conflicting instructions here. Read it before changing or applying
+any skill in this repository.
+
+
 # Jira Job Records
 
 Applies only when `tracker_backend: jira` in `$JOB_SEARCH_HOME/integrations.yaml`. If the

@@ -2,6 +2,13 @@
 name: job-search-quality
 description: Screen job opportunities, prepare job records and tailored CVs, and verify the result against current salary, title, source, and document-quality preferences. Applies to job boards and scheduled searches.
 ---
+
+## Constitution
+
+This repository is governed by a constitution at `.specify/memory/constitution.md`. It is
+binding and it supersedes conflicting instructions here. Read it before changing or applying
+any skill in this repository.
+
 # Job search quality
 
 ## Configuration
