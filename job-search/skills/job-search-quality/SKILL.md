@@ -31,6 +31,10 @@ Title words are a screening cue, not proof of level. A role with a generic title
 
 For each selected role, save its exact source URL, company, title, location/work pattern, posted date and salary as shown, a nonempty evidence-based fit rationale, explicit gaps/risks, and the **complete source job description through its final paragraph**. Do not turn inference about salary, seniority, stability, or growth path into a fact. Read the issue back after writing; compare the copied description with the source, including the final 200 characters. An issue with blank fit/gaps or a truncated JD is incomplete and must be fixed before reporting success.
 
+Use the summary `[Role Title] — [Company]`, with no prefix — the tracker already scopes the record to job hunting.
+
+Set the **Start date** field to the date the record is created, so the pipeline entry date is recorded rather than inferred. Record where the opportunity came from (SEEK, LinkedIn, recruiter, referral, company site) in the `Source` field where one exists, otherwise as a `Source:` line in the description.
+
 Also record the **company head count** in the `people count` field, as text with the source and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`. Research it when the record is created rather than leaving it blank; a headline number with its source is far more useful than an unsourced figure. If head count genuinely cannot be found, say so in the field rather than guessing.
 
 ## CV evidence gate
