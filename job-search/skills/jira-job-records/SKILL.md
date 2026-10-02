@@ -22,6 +22,9 @@ an older copy of this skill, and never print a credential.
 | Priority | set from the screening result |
 | Description | the job link as a hyperlink on the first line, then the complete job description |
 
+**Lane.** Create the record in the **Backlog** lane. Never create directly in To Do: promotion to
+To Do is a triage decision for the candidate, not the intake step.
+
 **Summary.** Use `<Role Title> — <Company>` with no prefix. A prefix such as `Job Hunt:` adds
 nothing: every record in the project is a job record, and the prefix only widens the title and
 breaks title-based searches.
