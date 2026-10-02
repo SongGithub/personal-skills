@@ -18,7 +18,7 @@ an older copy of this skill, and never print a credential.
 |-------|-------|
 | Summary | `<Role Title> — <Company>` |
 | Start date | the date the record is created |
-| Source | where the opportunity came from |
+| Labels | source label, e.g. `seek` or `linkedin` |
 | Priority | set from the screening result |
 | Description | the complete job description, formatted per below |
 
@@ -30,10 +30,12 @@ breaks title-based searches.
 pipeline is recorded rather than inferred from ticket history. This is the record's start date,
 not the role's start date. Field id comes from `jira.fields.start_date`.
 
-**Source.** Record where the opportunity came from — `SEEK`, `LinkedIn`, `recruiter`,
-`referral`, `company site`, or `direct`. Where a dedicated field exists, use it
-(`jira.fields.source`). Where it does not, write a `**Source:**` line at the top of the
-description so the information is not lost. Do not leave it blank.
+**Source.** Record where the opportunity came from **as a label** on the issue:
+`seek`, `linkedin`, `recruiter`, `referral`, `company-site`, or `direct`. Labels are the
+configured home for source — do not open a custom field for it. Accepted values come from
+`jira.source_labels`. Add the source label alongside any other labels the record carries (a
+queue label such as `p0-apply-first`, for example), and never leave it off: an unlabelled record
+cannot be filtered by channel later.
 
 **People count.** Where the project tracks company size, record the head count with its source
 and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`.

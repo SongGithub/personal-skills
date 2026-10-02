@@ -26,9 +26,9 @@ jira:
   # Leave a field blank to skip it.
   fields:
     start_date: ""          # set to the date the record is created
-    source: ""              # where the opportunity came from, once the field exists
     people_count: ""        # company head count
-  # Summary for a job record. No prefix — the project already scopes the record.
+  # Source is carried as a LABEL, not a custom field. Accepted values:
+  source_labels: [seek, linkedin, recruiter, referral, company-site, direct]
   summary_format: "{title} — {company}"
 
 trello:
