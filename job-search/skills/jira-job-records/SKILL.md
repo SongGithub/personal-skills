@@ -18,7 +18,7 @@ an older copy of this skill, and never print a credential.
 |-------|-------|
 | Summary | `<Role Title> — <Company>` |
 | Start date | the date the record is created |
-| Labels | source label, e.g. `seek` or `linkedin` |
+| Source | where the opportunity came from, e.g. `seek` or `linkedin` |
 | Priority | set from the screening result |
 | Description | the job link as a hyperlink on the first line, then the complete job description |
 
@@ -30,12 +30,14 @@ breaks title-based searches.
 pipeline is recorded rather than inferred from ticket history. This is the record's start date,
 not the role's start date. Field id comes from `jira.fields.start_date`.
 
-**Source.** Record where the opportunity came from **as a label** on the issue:
-`seek`, `linkedin`, `recruiter`, `referral`, `company-site`, or `direct`. Labels are the
-configured home for source — do not open a custom field for it. Accepted values come from
-`jira.source_labels`. Add the source label alongside any other labels the record carries (a
-queue label such as `p0-apply-first`, for example), and never leave it off: an unlabelled record
-cannot be filtered by channel later.
+**Source.** Record where the opportunity came from in the **Source** field, whose id is
+`jira.fields.source`. Accepted values come from `jira.source_values`: `seek`, `linkedin`,
+`recruiter`, `referral`, `company-site`, or `direct`. Never leave it blank — a record with no
+source cannot be filtered by channel later, which is the whole point of the field.
+
+Note that on a **team-managed (next-gen) project** a custom field is project-scoped and may not
+appear in the create-metadata API. Read the id from the issue's `expand=names` output, or from
+`/rest/api/3/field`, rather than concluding the field does not exist.
 
 **People count.** Where the project tracks company size, record the head count with its source
 and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`.

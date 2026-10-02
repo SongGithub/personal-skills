@@ -27,8 +27,8 @@ jira:
   fields:
     start_date: ""          # set to the date the record is created
     people_count: ""        # company head count
-  # Source is carried as a LABEL, not a custom field. Accepted values:
-  source_labels: [seek, linkedin, recruiter, referral, company-site, direct]
+  # Accepted values for the Source field.
+  source_values: [seek, linkedin, recruiter, referral, company-site, direct]
   summary_format: "{title} — {company}"
 
 trello:
