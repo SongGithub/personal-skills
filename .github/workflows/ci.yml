@@ -39,3 +39,11 @@ jobs:
         # static, config, description, document-design and golden fixtures.
         # The LLM judge is skipped without --llm-judge, so CI stays deterministic.
         run: python3 evals/run.py --suite all
+  conformance:
+    name: Workflow conforms to spec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # FR-001: one versioned definition, no retired skill names, no broken refs.
+      - name: Check workflow against the spec
+        run: bash scripts/check-workflow-conformance.sh

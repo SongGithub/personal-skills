@@ -112,3 +112,20 @@ Only if asked. Style rules in `references/03-writing-style.md`, structure in
   authorises it. Filing a tracker item is not consent to apply.
 - Never let archive or tracker failures pass silently. Report them.
 - Do not editorialise about why a role ended, in the HTML or the PDF.
+## Definition of done
+
+Do not report this pipeline complete until you have checked the result against
+`specs/001-job-search-workflow/spec.md` and can state, for each requirement that applies to the
+run, that it was met:
+
+- Records carry title, start date, source, head count, the full description and the job link on
+  the first line, each confirmed by read-back.
+- Every new record is in the intake lane.
+- Every verdict is supported by its stated reasons.
+- Any claim absent from the profile was raised, not deleted.
+- The run announced its outcome, including when it found nothing.
+- Any source, step or check that could not be completed was reported as such.
+
+`scripts/check-workflow-conformance.sh` verifies the static side of this (the definition lives
+in exactly one place, no retired names survive, every cross-reference resolves). Run it before
+committing a change to this pipeline.
