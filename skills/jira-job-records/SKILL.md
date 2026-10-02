@@ -20,7 +20,7 @@ an older copy of this skill, and never print a credential.
 | Start date | the date the record is created |
 | Labels | source label, e.g. `seek` or `linkedin` |
 | Priority | set from the screening result |
-| Description | the complete job description, formatted per below |
+| Description | the job link as a hyperlink on the first line, then the complete job description |
 
 **Summary.** Use `<Role Title> — <Company>` with no prefix. A prefix such as `Job Hunt:` adds
 nothing: every record in the project is a job record, and the prefix only widens the title and
@@ -40,6 +40,23 @@ cannot be filtered by channel later.
 **People count.** Where the project tracks company size, record the head count with its source
 and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`.
 An unsourced number is worse than no number.
+
+## The job link
+
+Keep the link to the original posting **at the top of the description**, as a hyperlink with
+readable text, so it is the first thing visible when the record is opened. Never bury it among
+other metadata, and never leave a bare URL mid-paragraph.
+
+Format it as the first line of the description:
+
+    [<Role Title> — <Company>](<posting url>)
+
+If the project has a dedicated URL or link field, set that as well — but the description link is
+the one that must always be present, because it survives field-configuration changes and is
+exported with the description.
+
+Set the source label (`seek`, `linkedin`) in the same step, so the record can be filtered by
+channel later.
 
 ## Duplicate check — do this before creating anything
 
