@@ -10,7 +10,7 @@ status=0
 # Plugin directories must be self-contained. OpenClaw (among others) copies a
 # single plugin directory out of the marketplace and discards the rest of the
 # repo, so a relative symlink such as
-#   job-search/skills/job-search-quality -> ../../skills/job-search-quality
+#   job-search/skills/job-screening-criteria -> ../../skills/job-screening-criteria
 # resolves to a path that no longer exists once the plugin is copied out. Those
 # links silently produced skills that never loaded. Use
 # scripts/sync-plugins.sh to regenerate real copies instead.

@@ -154,7 +154,7 @@ excluded stacks) or `profile.md` gains a material new fact:
 
 ## Related skills
 
-- `job-search-quality` — screening, salary and title criteria, and the evidence gate that
+- `job-screening-criteria` — screening, salary and title criteria, and the evidence gate that
   determines whether a record is complete
-- `cv-attach-workflow` — generating the tailored CV and attaching it
+- `cv-generate-and-attach` — generating the tailored CV and attaching it
 - `jira-job-records` is the Jira counterpart to `trello-card-rules`

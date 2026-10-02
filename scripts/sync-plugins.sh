@@ -5,7 +5,7 @@
 # copy a single plugin directory out of the marketplace and discard the rest of
 # the repository. A relative symlink like
 #
-#     job-search/skills/job-search-quality -> ../../skills/job-search-quality
+#     job-search/skills/job-screening-criteria -> ../../skills/job-screening-criteria
 #
 # resolves correctly when the whole repo is cloned in place (Claude Code), but
 # breaks once the plugin directory is copied on its own, because ../../skills no
@@ -22,7 +22,7 @@ skills_src="$root/skills"
 
 # plugin-dir -> space-separated skill names it packages
 declare -a PLUGINS=(
-  "job-search:job-application-assistant job-search-quality jira-job-records apply-jobs-workflow cv-attach-workflow trello-card-rules job-scraper upskill first-principles-startup"
+  "job-search:job-application-preparation job-screening-criteria jira-job-records job-application-pipeline cv-generate-and-attach trello-card-rules job-board-search skill-gap-plan first-principles-startup"
   "document-design:document-design"
   "communication-style:communication-style"
 )

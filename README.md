@@ -14,12 +14,12 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 
 | Skill | Purpose |
 |-------|---------|
-| `job-search-quality` | Screening rules and evidence gates. Holds the configuration contract. |
-| `job-application-assistant` | Evaluate fit, tailor CVs and cover letters, prepare interviews. |
-| `apply-jobs-workflow` | Posting → tailored CV → PDF → archive → tracker. |
-| `cv-attach-workflow` | Generate a CV for a tracked role and attach it, then verify. |
-| `job-scraper` | Discover new postings, deduplicate, rank by fit. |
-| `upskill` | Gap heatmap and learning plan from tracked roles vs. profile. |
+| `job-screening-criteria` | Screening rules and evidence gates. Holds the configuration contract. |
+| `job-application-preparation` | Evaluate fit, tailor CVs and cover letters, prepare interviews. |
+| `job-application-pipeline` | Posting → tailored CV → PDF → archive → tracker. |
+| `cv-generate-and-attach` | Generate a CV for a tracked role and attach it, then verify. |
+| `job-board-search` | Discover new postings, deduplicate, rank by fit. |
+| `skill-gap-plan` | Gap heatmap and learning plan from tracked roles vs. profile. |
 | `trello-card-rules` | Duplicate detection, title format and lane placement for Trello. |
 | `first-principles-startup` | First-principles reasoning for a startup or a job search (中文). |
 | `document-design` | The HTML/CSS design system CVs are rendered with. |
@@ -133,7 +133,7 @@ $JOB_SEARCH_HOME            (default: ~/.config/job-search/)
   targets.md                environments to prefer and to avoid
   career-notes.md           financial position and career framing
   cv/                       real CV variants, including the master template
-  upskill/                  generated upskill reports
+  skill-gap-plan/                  generated skill-gap-plan reports
 ```
 
 Start from the `*.example.*` files shipped alongside each skill and replace the placeholders.
@@ -143,7 +143,7 @@ guessing or falling back to defaults.
 ### Two trackers, one config
 
 `integrations.yaml` sets `tracker_backend` to either `jira` or `trello`. The
-`job-search-quality` evidence gate writes a Jira issue; `trello-card-rules` writes a Trello
+`job-screening-criteria` evidence gate writes a Jira issue; `trello-card-rules` writes a Trello
 card. Both are supported and neither hardcodes the other's vocabulary — no "lane" in Jira
 terms, no "issue key" in Trello terms. Board, list and project identifiers all come from the
 config file, never from a skill.

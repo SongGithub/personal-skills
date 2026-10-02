@@ -1,0 +1,27 @@
+# Fixture: job posting for job-application-preparation evaluation
+job_posting:
+  title: "Senior Platform Engineer"
+  company: "Example Corp"
+  location: "City, Hybrid"
+  salary_range: "<base salary range in AUD> + super"
+  description: |
+    We are looking for a Senior Platform Engineer to join our Platform Engineering team.
+    You will own the reliability and scalability of our core platform serving 50+ engineers.
+    
+    Responsibilities:
+    - Design and operate Kubernetes-based platform on AWS
+    - Build self-service tooling for development teams
+    - Define and maintain SLOs/SLIs for critical services
+    - Participate in on-call rotation
+    
+    Requirements:
+    - 5+ years experience with AWS, Kubernetes, Terraform
+    - Strong background in site reliability engineering
+    - Experience with observability stacks (Prometheus, Grafana, OpenTelemetry)
+    - Excellent communication skills
+expected_evaluation:
+  fit_score: "high"
+  salary_verdict: "confirmed_above_minimum"
+  key_gaps:
+    - "Specific Terraform module design experience not explicitly shown"
+  recommendation: "proceed"

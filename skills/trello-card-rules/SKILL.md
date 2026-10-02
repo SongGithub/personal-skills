@@ -9,7 +9,7 @@ description: >
 # Trello Card Rules
 
 Applies only when `tracker_backend: trello` in `$JOB_SEARCH_HOME/integrations.yaml`. If the
-backend is `jira`, use the evidence gate in the `job-search-quality` skill instead.
+backend is `jira`, use the evidence gate in the `job-screening-criteria` skill instead.
 
 All board and lane identifiers come from `integrations.yaml` under `trello.*`. Never hardcode
 them, and never print the API key or token.

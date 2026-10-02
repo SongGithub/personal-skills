@@ -156,9 +156,9 @@ def run_static_evals() -> EvalSuite:
     return suite
 
 def run_config_evals() -> EvalSuite:
-    """Config validation tests for job-search-quality"""
+    """Config validation tests for job-screening-criteria"""
     suite = EvalSuite("config")
-    skill_dir = SKILLS_DIR / "job-search-quality"
+    skill_dir = SKILLS_DIR / "job-screening-criteria"
     prefs_example = skill_dir / "references" / "preferences.example.yaml"
     skill_md = skill_dir / "SKILL.md"
 
@@ -486,7 +486,7 @@ def run_golden_evals(llm_judge: bool = False) -> EvalSuite:
 
     if not llm_judge:
         # Check fixtures exist
-        for skill_name in ["job-search-quality", "job-application-assistant", "document-design"]:
+        for skill_name in ["job-screening-criteria", "job-application-preparation", "document-design"]:
             fix_dir = FIXTURES_DIR / skill_name
             if fix_dir.exists():
                 fixtures = list(fix_dir.glob("*.yaml")) + list(fix_dir.glob("*.html"))
@@ -501,7 +501,7 @@ def run_golden_evals(llm_judge: bool = False) -> EvalSuite:
 
     # LLM-judged evals would go here
     # For now, just report fixtures
-    for skill_name in ["job-search-quality", "job-application-assistant", "document-design"]:
+    for skill_name in ["job-screening-criteria", "job-application-preparation", "document-design"]:
         fix_dir = FIXTURES_DIR / skill_name
         if fix_dir.exists():
             for fixture in fix_dir.glob("*.yaml"):

@@ -1,0 +1,21 @@
+# Fixture: valid preferences for job-screening-criteria
+# Expected: skill accepts config and proceeds with screening
+preferences:
+  currency: AUD
+  minimum_base_salary_excluding_super_aud: 180000
+  preferred_title_levels:
+    - "Senior"
+    - "Lead"
+    - "Principal"
+  preferred_title_families:
+    - "Platform Engineering"
+    - "Site Reliability Engineering"
+    - "Cloud Engineering"
+    - "Infrastructure Engineering"
+  minimum_equivalent_scope: "Owns platform reliability for a product with 50+ engineers"
+  excluded_title_levels:
+    - "Graduate"
+    - "Junior"
+    - "Associate"
+  salary_unknown_policy: "provisional_if_strong_fit"
+  maximum_new_jira_issues_per_run: 5

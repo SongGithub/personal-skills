@@ -1,0 +1,65 @@
+# Example integrations config.
+# Copy to $JOB_SEARCH_HOME/integrations.yaml and replace the placeholders.
+#
+# The skills contain the method. Anything machine-specific lives here: which
+# tracker evidence is filed into, board and lane identifiers, where finished CVs
+# are archived, the master CV template, and which location strings to search.
+#
+# NEVER put a credential in this file. Every secret is read from the environment
+# variable named below.
+
+# Which tracker the workflow files evidence into.
+#   jira    - the job-screening-criteria evidence gate writes an issue + attachments
+#   trello  - the trello-card-rules workflow writes a card + attachments
+# Both are supported. Whichever is set, skills must not assume the other's
+# vocabulary (no "lane" for Jira, no "issue key" for Trello).
+tracker_backend: jira
+
+jira:
+  base_url: ""              # e.g. https://yourorg.atlassian.net
+  project_key: ""           # e.g. KAN
+  # Credentials come from the environment, never from this file.
+  email_env: JIRA_EMAIL
+  api_token_env: JIRA_API_TOKEN
+  # Custom field ids are site-specific, so they live here rather than in the skill.
+  # List them via /rest/api/3/field, or read the issue screen configuration.
+  # Leave a field blank to skip it.
+  fields:
+    start_date: ""          # set to the date the record is created
+    people_count: ""        # company head count
+  # Accepted values for the Source field.
+  source_values: [seek, linkedin, recruiter, referral, company-site, direct]
+  summary_format: "{title} — {company}"
+
+trello:
+  board_id: ""              # found via `trello board:list`
+  api_key_env: TRELLO_API_KEY
+  token_env: TRELLO_API_TOKEN
+  # Lane identifiers. Leave a lane blank to skip it.
+  lists:
+    backlog: ""
+    todo: ""
+    applied: ""
+    interview: ""
+    dead_leads: ""
+
+# Where the finished PDF and its HTML source are copied after the print step.
+# A mounted volume or a local directory. Blank disables archiving.
+archive_dir: ""
+
+# Master CV template the tailoring skills start from, relative to
+# $JOB_SEARCH_HOME/cv/. The document-design skill defines the format.
+cv_template: main.html
+
+# Job-board location strings for --where style filters, most preferred first.
+# Format is "All <City> <STATE>", or "All Australia" for a remote sweep.
+search_locations: []
+# e.g. ["All Australia", "All <City> <STATE>"]
+
+# Optional helper CLIs. Blank means the skill skips that channel and says so.
+tools:
+  board_search_cli: ""      # structured job-board search CLI
+  linkedin_search_cli: ""   # opt-in only; never queried by default
+
+# Tracker file used for deduplication and gap analysis.
+tracker_path: job_search_tracker.csv
