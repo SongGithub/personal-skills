@@ -63,6 +63,18 @@ exported with the description.
 Set the source label (`seek`, `linkedin`) in the same step, so the record can be filtered by
 channel later.
 
+## Verify the record after creating it
+
+Read the issue back and confirm both of these before reporting success. Both have been silently
+missing in real runs, so treat this as a required step, not a formality:
+
+1. **The Source field is populated.** An empty Source field cannot be filtered by channel, which is
+   the only reason the field exists. Values come from `jira.source_values`; use `recruiter` for a
+   role obtained through a recruiter and `company-site` for one taken from an employer's own site.
+2. **The first line of the description is the job hyperlink.** Not a heading, not a title, not the
+   link buried mid-paragraph. If the role has no public posting URL, say so explicitly on the first
+   line instead, naming where it came from.
+
 ## Duplicate check — do this before creating anything
 
 Search the project for the company and the role title before writing:
