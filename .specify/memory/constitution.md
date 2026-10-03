@@ -11,7 +11,12 @@ The repository carries method and nothing else: how to screen, record, tailor an
 It never carries candidate facts.
 
 - Candidate facts - profile, preferences, targets, evidence, salary floor, denylist - live
-  outside the repository under `$JOB_SEARCH_HOME` and are read at call time.
+  in the private iCloud Obsidian career area configured by `career_kb_root` in
+  `$JOB_SEARCH_HOME/integrations.yaml` and are read at call time.
+- `$JOB_SEARCH_HOME` contains operational configuration only. Compatibility links may point
+  legacy readers to the canonical Obsidian records during migration; they are not a second
+  source of truth. The operator chose the private synced vault as the single home for sensitive
+  career records so the same verified facts are available to local CV workflows.
 - Site URLs, project keys, field ids and credentials are never hardcoded. They come from
   `integrations.yaml`; credentials come from environment variables and are never printed.
 - No skill may copy a private file into this repository, and no output may quote one.
@@ -106,4 +111,8 @@ Amendments require an explicit operator decision and must be recorded here with 
 Every review of a skill change should check the change against these principles before
 anything else.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-02 | **Last Amended**: 2026-10-02
+**Version**: 1.1.0 | **Ratified**: 2026-10-02 | **Last Amended**: 2026-10-03
+
+**Amendment (2026-10-03)**: The operator explicitly selected the private iCloud Obsidian KB as
+the canonical store for all sensitive career facts. This replaces the previous `$JOB_SEARCH_HOME`
+fact-store rule. The public repository still contains methods and generic examples only.

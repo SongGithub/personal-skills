@@ -33,15 +33,15 @@ skills/job-screening-criteria/references/preferences.example.yaml
 
 ## Configuration
 
-`job-screening-criteria` reads its salary and title settings from a private file outside this repo:
+Career facts and supporting evidence live in the private Obsidian KB. Set `career_kb_root` in
+`$JOB_SEARCH_HOME/integrations.yaml` to its `Areas/Career` folder. `$JOB_SEARCH_HOME` is for
+machine-specific operational settings and temporary compatibility links only.
 
-```
-$JOB_SEARCH_HOME/preferences.yaml      (default: ~/.config/job-search/preferences.yaml)
-```
-
-Copy `skills/job-screening-criteria/references/preferences.example.yaml` to get started, along with
-`profile.example.md`. If the file is missing or unreadable the skill stops and names it instead of
-guessing.
+`job-screening-criteria` reads salary and title settings from `career_kb_root/Role Preferences.yaml`.
+Legacy skills that still request `$JOB_SEARCH_HOME/preferences.yaml` resolve through a local
+compatibility link to that same Obsidian record. Use `skills/job-screening-criteria/references/preferences.example.yaml`
+and `profile.example.md` only as generic format references. If a required Obsidian record is missing
+or unreadable, the skill stops and names it instead of guessing.
 
 ## Usage
 

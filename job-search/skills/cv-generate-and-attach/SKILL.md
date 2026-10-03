@@ -18,12 +18,19 @@ Read from `$JOB_SEARCH_HOME/integrations.yaml`:
 |------|-----|
 | Which tracker | `tracker_backend` (`jira` or `trello`) |
 | Tracker identifiers | `jira.*` or `trello.board_id` / `trello.lists.*` |
-| Master CV template | `cv_template` |
+| Canonical career records | `career_kb_root` |
+| Master CV layout reference | `cv_template` |
+| CV output and application archive | `archive_dir` |
 
-Candidate facts come from `$JOB_SEARCH_HOME/profile.md`.
+Read the `career_kb_root` value from the integrations file, then read candidate facts from that
+Obsidian folder: `Profile.md`, `Evidence Register.md`, `Targets.md`, and, when relevant,
+`Role Preferences.yaml` and `Career Direction.md`. `$JOB_SEARCH_HOME` is operational configuration;
+legacy compatibility links are not an alternate source of truth. The template is a layout reference
+only. Replace all personal claims from it with facts verified in the Obsidian records.
 
-**If a required key is blank, stop and name it.** Never hardcode a site URL, project key,
-email address, or token — including from memory or an older copy of this skill.
+**If `career_kb_root` or a required operational key is blank or unreadable, stop and name it.**
+Never hardcode a site URL, project key, email address, or token — including from memory or an older
+copy of this skill.
 
 ## Trigger
 
@@ -39,18 +46,29 @@ role; do not work from the title alone.
 
 ### 2. Generate the tailored CV
 
-- Template: `$JOB_SEARCH_HOME/cv/<cv_template>`
+- Template: the configured `cv_template` path (resolve a relative path under
+  `$JOB_SEARCH_HOME/cv/`). Treat its existing wording as historical layout material, not evidence.
 - Format: the `document-design` skill owns the visual system
 - Writing rules: `references/03-writing-style.md`
 - Customise the **Summary** for this role and company
 - Reorder **Core Skills** so the 6–8 most relevant lead
 - Reorder **Experience** bullets so the most relevant achievements lead
-- Write to `cv/cv_<item-key>_<company-slug>.html`
+- Write the HTML and PDF to `<archive_dir>/<item-key>/` when `archive_dir` is
+  configured; for a base CV, use a `Base CV` subfolder. Create the folder if needed.
 
-**Evidence gate.** Every claim must be traceable to `$JOB_SEARCH_HOME/profile.md`. An
-unproven requirement stays a gap rather than becoming a CV skill.
+**Evidence gate.** Every claim must be traceable to `career_kb_root/Profile.md` or
+`career_kb_root/Evidence Register.md`. Cite or note the source record for each selected claim in
+the working draft. An unproven requirement stays a gap rather than becoming a CV skill. Never
+remove an existing claim solely because the profile summary omits it; check the evidence register
+and ask the operator if it remains unverified.
 
-### 3. Attach
+### 3. Verify the artefacts
+
+Before attaching, render the HTML to PDF and inspect every page. Confirm the PDF text extracts,
+all employment dates match the Obsidian records, there are no browser headers or footers, and no
+nearly blank trailing page. Reject and repair any clipped or tiny text.
+
+### 4. Attach
 
 Branch on `tracker_backend`.
 
@@ -66,7 +84,7 @@ a log, a card comment, or the conversation.
 **`trello`** — `POST <trello base>/1/cards/<cardId>/attachments` using `trello.api_key_env`
 and `trello.token_env`, then apply the verification rules in the `trello-card-rules` skill.
 
-### 4. Verify
+### 5. Verify the attachment
 
 Do not report success on the strength of a 200 response alone:
 

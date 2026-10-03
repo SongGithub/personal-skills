@@ -18,7 +18,9 @@ Everything machine-specific is read from `$JOB_SEARCH_HOME/integrations.yaml`:
 | Which tracker to file into | `tracker_backend` (`jira` or `trello`) |
 | Tracker identifiers | `jira.*` or `trello.board_id` / `trello.lists.*` |
 | Archive destination | `archive_dir` |
-| Master CV template | `cv_template` |
+| Canonical career records | `career_kb_root` |
+| Master CV layout reference | `cv_template` |
+| CV output and application archive | `archive_dir` |
 | Tracker row file | `tracker_path` |
 
 Template for that file: `integrations.example.yaml`, shipped in the `job-screening-criteria`
@@ -28,8 +30,11 @@ skill's references directory.
 key.** Do not guess a board, lane, path, or template name.
 
 Before screening, read the sibling `job-screening-criteria` skill. Its salary, title and
-evidence gates override anything in this skill. Candidate facts come from
-`$JOB_SEARCH_HOME/profile.md` — never from this repository.
+evidence gates override anything in this skill. Read `career_kb_root` from the integrations file,
+then read `Profile.md` and `Evidence Register.md` from that private Obsidian folder. Read `Targets.md`
+and `Role Preferences.yaml` for relevant screening context. Candidate facts never come from this
+repository. `$JOB_SEARCH_HOME` contains operational configuration only; compatibility links are not
+a second source of truth.
 
 ## Format rules (hard constraints)
 
@@ -55,7 +60,9 @@ Given a URL (board listing, saved job, or direct link):
 
 ### 2. Tailor the CV
 
-- Start from `$JOB_SEARCH_HOME/cv/<cv_template>`
+- Start from the configured `cv_template` path (relative paths resolve under
+  `$JOB_SEARCH_HOME/cv/`). Treat it as a layout reference only and replace all personal claims
+  with facts verified in the Obsidian career records.
 - Apply `references/05-cv-templates.md`:
   - Single-line name, tagline with an em dash (`Title — Skill · Skill · Skill`)
   - Contact line: `City, COUNTRY • email • phone • profile link`
@@ -65,28 +72,25 @@ Given a URL (board listing, saved job, or direct link):
     Developed, Architected, Delivered)
 - Tailor to the posting: reorder bullets so the relevant experience leads, adjust the
   tagline, add or drop core skills to match the advert
-- Write to `cv/<company>_cv.html`
+- Write the HTML to `<archive_dir>/<role-key>/<company>_cv.html` when configured.
 
-**Evidence gate.** Only claim what `$JOB_SEARCH_HOME/profile.md` documents. If the advert
-asks for something unproven, it stays a gap — it does not become a CV bullet.
+**Evidence gate.** Every claim must be traceable to `career_kb_root/Profile.md` or
+`career_kb_root/Evidence Register.md`. If the advert asks for something unproven, it stays a gap —
+it does not become a CV bullet. Check the evidence register before treating omission from the
+profile summary as absence; ask before removing a true but undocumented claim.
 
 ### 3. Print to PDF
 
-- Render the HTML in a browser and print to `cv/<company>_cv.pdf`
+- Render the HTML in a browser and print to `<archive_dir>/<role-key>/<company>_cv.pdf`.
 - **Verify every page.** A4 or Letter as configured, legible type, no browser date or URL
   headers, correct page count. A nearly blank trailing page is a failure even if the
   document is the right length.
 
 ### 4. Archive
 
-If `archive_dir` is set:
-
-```bash
-cp "cv/<company>_cv.pdf"   "$archive_dir/<company>_cv.pdf"
-cp "cv/<company>_cv.html"  "$archive_dir/<company>_cv.html"
-```
-
-If `archive_dir` is blank, skip this step and say so.
+The configured `archive_dir` is the canonical destination for generated CV artifacts. Confirm the
+HTML and PDF are present there after rendering. If `archive_dir` is blank, stop before generating
+and name the missing key; CV outputs must be stored in the private Obsidian Job Search project.
 
 ### 5. File against the tracker
 

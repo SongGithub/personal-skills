@@ -13,7 +13,7 @@
       "name": "job-search",
       "source": "./job-search",
       "description": "Job search workflow — evaluates job fit, screens salary and title preferences, tailors CVs and cover letters, and preps interviews.",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "communication-style",
