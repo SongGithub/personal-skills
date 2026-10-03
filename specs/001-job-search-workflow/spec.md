@@ -173,8 +173,20 @@ message arrives in both cases.
   found nothing.
 - **FR-014**: The workflow MUST report source failures, skipped steps and partial runs, and MUST NOT
   describe a partial run as successful.
-- **FR-015**: Candidate facts MUST remain outside the public repository; the workflow MUST read them
-  from the private location and MUST NOT copy them into the repository.
+- **FR-015**: Candidate facts MUST remain outside the public repository; the workflow MUST read
+  them from the private Obsidian career area identified by `career_kb_root` in
+  `$JOB_SEARCH_HOME/integrations.yaml`, and MUST NOT copy them into the repository.
+- **FR-016**: `career_kb_root` MUST point to the operator's canonical private career records,
+  including the profile, evidence register, role targets and preferences. Compatibility links under
+  `$JOB_SEARCH_HOME` MUST resolve to those records and MUST NOT become a second source of truth.
+- **FR-017**: CV HTML and PDF artifacts MUST be stored under the configured private Obsidian
+  Job Search project directory and MUST be rendered and inspected before being attached or reported
+  complete.
+- **FR-018**: A CV claim MUST be supported by `Profile.md` or `Evidence Register.md` under the
+  configured career area. A missing or unreadable source MUST stop generation; conflicting dated
+  records MUST be surfaced rather than silently merged.
+- **FR-019**: The public skill repository MUST contain reusable workflow instructions and generic
+  examples only. It MUST NOT contain candidate facts or generated CV artifacts.
 
 ### Key Entities
 
@@ -203,8 +215,9 @@ message arrives in both cases.
 
 ## Assumptions
 
-- The operator's private configuration remains the single source of truth for facts and criteria;
-  this workflow governs method and ordering, not values.
+- The operator's private Obsidian career area is the single source of truth for facts and
+  preferences; `$JOB_SEARCH_HOME/integrations.yaml` supplies its path and machine-specific
+  operational settings. The workflow governs method and ordering, not personal values.
 - Tracker-specific record conventions stay in the tracker skills; this workflow calls them rather
   than restating them.
 - The existing regression suites remain the gate for changes to any skill this workflow depends on.
