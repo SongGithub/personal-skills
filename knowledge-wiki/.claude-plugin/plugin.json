@@ -1,0 +1,8 @@
+{
+  "name": "knowledge-wiki",
+  "description": "Build and maintain a personal knowledge base with deep synthesis, practical retrieval, and evidence checks.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Your Name"
+  }
+}

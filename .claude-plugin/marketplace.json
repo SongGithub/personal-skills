@@ -4,7 +4,7 @@
     "name": "Your Name"
   },
   "metadata": {
-    "description": "A Claude Code plugin marketplace for job-search workflows and writing style.",
+    "description": "Personal skills for knowledge management, job-search workflows, and clear writing.",
     "version": "1.0.0",
     "pluginRoot": "."
   },
@@ -25,6 +25,12 @@
       "name": "document-design",
       "source": "./document-design",
       "description": "A reusable HTML document design system for CVs, one-pagers and short reports, with print-to-PDF rules.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "knowledge-wiki",
+      "source": "./knowledge-wiki",
+      "description": "Build and maintain a personal knowledge base with deep synthesis, practical retrieval, and evidence checks.",
       "version": "1.0.0"
     }
   ]

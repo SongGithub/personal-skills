@@ -8,6 +8,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 |--------|-------------|
 | `job-search` | The job-search workflow: evaluation, screening, tailoring, filing, and the skills built around it. |
 | `document-design` | A reusable HTML document design system — design tokens, print-to-PDF rules — for CVs, one-pagers and short reports. |
+| `knowledge-wiki` | Deeply synthesize sources into a personal knowledge base that is easy to retrieve and evidence-check. |
 | `communication-style` | A direct, plain-spoken, Australian-English writing style for anything an assistant drafts. |
 
 ### Skills
@@ -24,6 +25,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `first-principles-startup` | First-principles reasoning for a startup or a job search (中文). |
 | `document-design` | The HTML/CSS design system CVs are rendered with. |
 | `communication-style` | Writing style for drafted prose. |
+| `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
 
 ## Setup
 
@@ -31,6 +33,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 /plugin marketplace add <owner>/personal-skills
 /plugin install job-search@personal-skills
 /plugin install document-design@personal-skills
+/plugin install knowledge-wiki@personal-skills
 /plugin install communication-style@personal-skills
 ```
 
@@ -48,6 +51,7 @@ Use the **plugins** path, because this repository is a marketplace.
 ```bash
 openclaw plugins install --marketplace <owner>/personal-skills job-search
 openclaw plugins install --marketplace <owner>/personal-skills document-design
+openclaw plugins install --marketplace <owner>/personal-skills knowledge-wiki
 openclaw plugins install --marketplace <owner>/personal-skills communication-style
 ```
 

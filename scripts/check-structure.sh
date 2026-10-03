@@ -18,7 +18,7 @@ while IFS= read -r link; do
   echo "FAIL: symlink not allowed: ${link#$root/} (run scripts/sync-plugins.sh)"
   status=1
 done < <(find "$root/skills" "$root"/job-search "$root"/communication-style \
-              "$root"/document-design -type l -not -path '*/.git/*' 2>/dev/null)
+              "$root"/document-design "$root"/knowledge-wiki -type l -not -path '*/.git/*' 2>/dev/null)
 
 # 2. each plugin's packaged skills are byte-identical to the canonical skills/
 while IFS= read -r name; do
@@ -31,7 +31,7 @@ while IFS= read -r name; do
 
   # every plugin dir must contain a real copy of this skill
   found=0
-  for p in job-search communication-style document-design; do
+  for p in job-search communication-style document-design knowledge-wiki; do
     dest="$root/$p/skills/$name"
     [ -d "$dest" ] || continue
     found=1
@@ -48,7 +48,7 @@ while IFS= read -r name; do
 done < <(find "$root/skills" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;)
 
 # 3. each plugin exposes its skills
-for p in job-search communication-style document-design; do
+for p in job-search communication-style document-design knowledge-wiki; do
   dir="$root/$p/skills"
   if [ ! -d "$dir" ] || [ -z "$(ls -A "$dir" 2>/dev/null)" ]; then
     echo "FAIL: plugin '$p' has no skills"
@@ -66,7 +66,7 @@ while IFS= read -r file; do
     fi
   done < <(grep -oE 'references/[A-Za-z0-9._-]+' "$file" | sort -u)
 done < <(find "$root/skills" "$root"/job-search/skills "$root"/communication-style/skills \
-              "$root"/document-design/skills -name SKILL.md 2>/dev/null)
+              "$root"/document-design/skills "$root"/knowledge-wiki/skills -name SKILL.md 2>/dev/null)
 
 # 5. example files must still be placeholders
 for f in preferences.example.yaml profile.example.md; do
