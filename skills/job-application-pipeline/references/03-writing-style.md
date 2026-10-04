@@ -16,9 +16,10 @@
 
 - Never upgrade a contribution into ownership. If the candidate assisted, contributed to, or
   supported work another team owned, write "contributed to", "assisted" or "supported".
-- Treat any **Claim calibration** note in Profile.md as binding. Current example: the
-  **OpenTelemetry observability standardisation** at Xero was delivered by a centralised SRE
-  team and Song **assisted**. Never write "led", "owned" or "standardised" for it.
+- Treat any **Claim calibration** note in the private career profile as binding: where the
+  profile records assistance or contribution, never write "led", "owned" or "standardised".
+  The current instance concerns an observability-platform standardisation owned by a centralised
+  SRE team.
 - CI/CD toolchain: GitHub Actions, Buildkite, **TeamCity**, Jenkins.
 
 ### Tone
