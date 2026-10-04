@@ -12,6 +12,15 @@
 - Australian English: organise, specialise, colour, behaviour, centre, licence (noun), practise (verb)
 - Avoid Americanisms unless required by the employer's style guide
 
+### Claim Calibration (ownership vs contribution)
+
+- Never upgrade a contribution into ownership. If the candidate assisted, contributed to, or
+  supported work another team owned, write "contributed to", "assisted" or "supported".
+- Treat any **Claim calibration** note in Profile.md as binding. Current example: the
+  **OpenTelemetry observability standardisation** at Xero was delivered by a centralised SRE
+  team and Song **assisted**. Never write "led", "owned" or "standardised" for it.
+- CI/CD toolchain: GitHub Actions, Buildkite, **TeamCity**, Jenkins.
+
 ### Tone
 - Professional but not stiff — competent peer energy, not "humble servant"
 - Lead with outcomes and impact, not responsibilities
