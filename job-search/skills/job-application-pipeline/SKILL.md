@@ -107,7 +107,10 @@ Branch on `tracker_backend`.
 source URL, company, title, location and work pattern, posted date, salary as shown, a
 non-empty fit rationale, explicit gaps, and the complete job description through its final
 paragraph. Attach the PDF and HTML, then read the issue back and compare the copied
-description against the source, including the final 200 characters.
+description against the source, including the final 200 characters. Follow `jira-job-records`
+for stage changes: a prepared CV remains in To Do; only a candidate-confirmed submission
+enters `Submitted - Awaiting reply`. When closing, select the specific Done status and record
+the outcome evidence.
 
 **`trello`** — follow the `trello-card-rules` skill for duplicate checking, title format
 and lane placement, then attach the PDF.

@@ -39,7 +39,12 @@ For each: headline → why → how → trade-off. Never stop at the headline.
 ---
 
 # Post-Outcome Logging Rule (apply after every rejection/ghost/no-response)
-Classify the outcome into exactly one bucket before filing to Dead-leads:
+Choose the Jira closure status from `jira-job-records` first: `Rejected` requires an explicit
+rejection; `No response` requires a submitted application and the candidate's chosen
+waiting/follow-up period; `Not pursued` means no application was submitted; `Withdrawn` means
+the candidate ended an active process. Use generic `Closed` only when none fits, and explain why.
+Record the last stage, outcome date and source in the ticket. Separately classify the lesson
+into exactly one bucket:
 1. **Framing/calibration miss** — content was there, delivery/emphasis lost it (→ log which of Steps 1-5 was skipped)
 2. **Genuine capability gap** — name the specific gap, add to skills-building backlog
 3. **Filter succeeded** — role was correctly self-filtered or auto-rejected on band/fit (→ log as validation, not failure, no action needed)

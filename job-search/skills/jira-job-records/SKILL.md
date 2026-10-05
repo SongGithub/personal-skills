@@ -32,6 +32,36 @@ an older copy of this skill, and never print a credential.
 **Lane.** Create the record in the **Backlog** lane. Never create directly in To Do: promotion to
 To Do is a triage decision for the candidate, not the intake step.
 
+## Application stage and closure
+
+Resolve the project's current status names and transitions at run time. Do not assume a status
+ID from an older ticket. The current team-managed board groups several Done statuses in one
+**Closed** column, so a closing transition should select the specific outcome status:
+
+| Status | Use when |
+|-------|----------|
+| Backlog | Opportunity captured but not selected for active preparation |
+| To Do | Selected for preparation or ready for the candidate to submit |
+| Submitted - Awaiting reply | The candidate confirms the application was actually submitted |
+| Interview | An interview or screening conversation has been arranged |
+| Not pursued | The candidate decided not to apply; no application was submitted |
+| Rejected | An explicit rejection arrived after submission |
+| No response | A submitted application is closed after the candidate's chosen follow-up or waiting period, without an explicit decision |
+| Withdrawn | The candidate withdrew an application or ended an active process |
+| Closed | Historical unclassified records, or an outcome that genuinely does not fit the specific statuses; explain the reason in a comment |
+
+An attached CV, draft application, recruiter conversation, or old status history is not proof of
+submission. Never move a ticket to `Submitted - Awaiting reply` or count it as an application
+without the candidate's confirmation or a submission receipt. Record the actual submission date
+and channel when known. Do not turn silence into `Rejected`, and do not infer a fixed waiting
+period for `No response`.
+
+Before closing, record the last stage reached, the outcome date and the evidence for the chosen
+status in the ticket. The closure status is the outcome; a separate retrospective classification
+such as a capability gap or process failure belongs in the comment or career notes. Read the
+ticket back after transition and verify it reached the intended status. The existing generic
+`Closed` option remains selectable, so the workflow itself does not require a specific reason.
+
 **Summary.** Use `<Role Title> — <Company>` with no prefix. A prefix such as `Job Hunt:` adds
 nothing: every record in the project is a job record, and the prefix only widens the title and
 breaks title-based searches.
@@ -141,13 +171,14 @@ A verdict is only useful if the reasons stated support it. Before writing one:
 Records are written once and then rot. When `preferences.yaml` changes (title levels, salary floor,
 excluded stacks) or `profile.md` gains a material new fact:
 
-- Re-read the fit rationale and gaps of every record in the active lanes: To Do, Applied, Interview
-  and Backlog.
+- Re-read the fit rationale and gaps of every record in the active lanes: Backlog, To Do,
+  Submitted - Awaiting reply and Interview.
 - Flag any record that cites a criterion which no longer applies, for example a level objection
   after that level became acceptable, or that asserts a skill the profile does not contain.
 - Fix the reasoning. Do **not** simply delete the stale objection: removing it can leave the verdict
   unsupported, which is worse than the original error.
-- Leave Dead-leads alone. They are inert.
+- Review closed records only when new evidence or changed criteria could alter a decision;
+  otherwise keep historical outcomes intact.
 - **Ask before deleting.** If a note or CV claim looks unverified, confirm with the candidate
   rather than removing it. A profile summary omits real experience, so absence there is not
   evidence that the claim is false. Record confirmed facts back into the profile.

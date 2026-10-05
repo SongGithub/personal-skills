@@ -6,13 +6,13 @@ Every Jira card in the KAN board gets triaged using a **7-dimension scoring syst
 
 ## Step 1: Quick Filter — Trash or Keep (30 seconds per card)
 
-Eliminate immediately if:
+Rule out an application, with the actual reason recorded, if:
 
-1. **Cloud-primary mismatch** — a role requiring deep experience the candidate lacks → Dead-leads
-2. **Requires bare metal / GPU / RDMA / InfiniBand** → Dead-leads (no hardware K8s experience)
-3. **Below the configured salary floor** → Dead-leads (read the floor from the private preferences)
-4. **Requires relocation** away from the candidate's city unless remote-first → Dead-leads
-5. **Recruiter is a known low-quality source** (Check company history in DB) → Dead-leads
+1. **Cloud-primary mismatch** — a role requiring deep experience the candidate lacks → Not pursued
+2. **Requires bare metal / GPU / RDMA / InfiniBand** → Not pursued (no documented hardware K8s experience)
+3. **Below the configured salary floor** → Not pursued (read the floor from the private preferences)
+4. **Requires relocation** away from the candidate's city unless remote-first → Not pursued
+5. **Recruiter is a known low-quality source** (check company history in DB) → Not pursued
 
 ## Step 2: Score Each Remaining Card (0-20)
 
@@ -62,10 +62,10 @@ Check forced-ranking risk scorecard if available:
 
 | Score | Action |
 |---|---|
-| **15-20** | 🟢 **Top priority** — create CV + cover letter, move to Applied |
+| **15-20** | 🟢 **Top priority** — prepare and verify the CV; keep in To Do until the candidate confirms submission. Write a cover letter only if asked. |
 | **10-14** | 🟡 **Warm** — create CV, keep in TODO for consideration |
 | **5-9** | 🟠 **Backlog** — keep for reference, don't actively pursue |
-| **0-4** | 🔴 **Dead-leads** — move there |
+| **0-4** | 🔴 **Not pursued** — record the actual reason if the decision is not to apply |
 
 ## Step 4: Lane Assignment
 
@@ -73,10 +73,18 @@ Check forced-ranking risk scorecard if available:
 |---|---|
 | Ready to apply | → To Do |
 | CV created, ready for review | → To Do (with CV attached) |
-| Applied | → Applied |
+| Candidate confirms submission | → Submitted - Awaiting reply; record the submission date and channel |
 | Interview scheduled | → Interview |
 | Not pursuing right now | → Backlog |
-| Dead/rejected/expired | → Dead-leads |
+| Decided not to apply | → Not pursued, with the reason recorded |
+| Explicit rejection after submission | → Rejected |
+| Submitted, then closed after the chosen waiting/follow-up period with no decision | → No response |
+| Candidate ended an active application | → Withdrawn |
+| Other known end state without a matching status | → Closed, with the reason in a comment |
+
+CV generation and attachment are preparation metrics, not submitted applications. Never infer
+submission from a CV attachment, a recruiter conversation, or an earlier status change. Use the
+`jira-job-records` skill for the complete status rules and read-back check.
 
 ## Post-Application: Lessons Capture
 
@@ -93,11 +101,13 @@ After each application outcome (rejected, interview, offer):
 When a recruiter messages the candidate directly:
 1. Still run the score — no special treatment
 2. Note the recruiter company and quality in the ticket
-3. If score ≥ 10, create card in TODO with source noted
+3. If score ≥ 10, create the record in Backlog with its source, then promote it to To Do
+   only after the candidate selects it for active preparation
 
 ## What Claude Should Do When Asked "Triage the board"
 
-1. Fetch all cards from KAN project (exclude Dead-leads)
+1. Fetch active cards from the configured Jira project; exclude Done-category outcomes unless
+   new evidence warrants revisiting them
 2. For each, run Quick Filter (Step 1)
 3. For survivors, run 7-dimension scoring (Step 2)
 4. Apply thresholds (Step 3) and suggest lane moves
