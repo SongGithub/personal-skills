@@ -55,6 +55,8 @@ Rules:
 Printing to PDF is the primary use, so the print block matters as much as the screen one.
 
 - `@page { size: letter; margin: 0 }` with padding moved into the page container, giving control over margins.
+- **Continuation pages need their own top margin.** The container's top padding applies only to the first page fragment, so a CV that runs onto a second page starts flush against the paper edge. Set `@page { size: letter; margin: .38in 0 0 }` and clear it on the first page with `@page :first { margin: 0 }`. Match the container's print top padding (`.38in`).
+- **Never shrink text or add a zoom to force one page.** A clean two-page CV beats a cramped one-page CV.
 - Force white backgrounds and set `print-color-adjust: exact` so tinted chips survive.
 - **Drop to ~10pt** with 1.3 line-height. Screen sizes are too large on paper.
 - `break-inside: avoid` on each role, sub-role and the header, so no job entry is split across a page.
