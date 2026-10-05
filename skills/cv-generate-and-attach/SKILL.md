@@ -46,6 +46,10 @@ role; do not work from the title alone.
 
 ### 2. Generate the tailored CV
 
+- Read the Obsidian `career dev` vault note
+  `00 - 面试准备 Interview Prep/CV 写作与审校方法 — 证据、定位、版式.md`.
+  Apply its ownership, scope, skill-depth, metric, and PDF checks. Its KAN-186 examples
+  are case-specific and must not be copied into unrelated applications.
 - Template: the configured `cv_template` path (resolve a relative path under
   `$JOB_SEARCH_HOME/cv/`). Treat its existing wording as historical layout material, not evidence.
 - Format: the `document-design` skill owns the visual system

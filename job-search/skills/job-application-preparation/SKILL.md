@@ -32,10 +32,16 @@ Before any role evaluation, recall the career-first-principles framework from me
 - Ask the user if they want to proceed with an application
 
 ### Step 2: Tailor CV
-- Read the most relevant existing CV variant from `cv/` as a starting point
+- Read the Obsidian `career dev` vault note
+  `00 - 面试准备 Interview Prep/CV 写作与审校方法 — 证据、定位、版式.md`.
+- Read the current JD and the `career_kb_root` records configured in
+  `$JOB_SEARCH_HOME/integrations.yaml`: `Profile.md`, `Evidence Register.md`, and
+  `Skill Gap Register.md`. Use an older CV only to check for omissions or layout ideas.
 - Follow the guidelines in `references/05-cv-templates.md`
-- Create `cv/main_<company>.tex` with tailored content
+- Start from the configured HTML `cv_template` for layout and render the tailored CV to PDF
 - Adjust: profile statement, skills section, experience bullet emphasis, section order
+- Audit ownership, scope, skill depth, dates, and metrics; inspect every PDF page and
+  extract its text before reporting the CV ready.
 
 ### Step 3: Write Cover Letter
 - Follow the writing style rules in `references/03-writing-style.md` (critical: no em-dashes, no cliches)
@@ -59,7 +65,7 @@ Before any role evaluation, recall the career-first-principles framework from me
 | `$JOB_SEARCH_HOME/targets.md` | Private — working style, ideal environments, exclusions |
 | `references/03-writing-style.md` | Tone, structure, do's and don'ts |
 | `references/04-job-evaluation.md` | Scoring framework for job fit |
-| `references/05-cv-templates.md` | LaTeX CV structure and tailoring rules |
+| `references/05-cv-templates.md` | HTML CV structure and tailoring rules |
 | `references/06-cover-letter-templates.md` | LaTeX cover letter structure and tailoring rules |
 | `references/07-interview-prep.md` | STAR examples, tough questions, roleplay guidelines |
 

@@ -38,6 +38,11 @@ a second source of truth.
 
 ## Format rules (hard constraints)
 
+Before drafting or revising a CV, read the Obsidian `career dev` vault note
+`00 - 面试准备 Interview Prep/CV 写作与审校方法 — 证据、定位、版式.md`.
+Use its claim audit and PDF checks together with the current `career_kb_root` records.
+The KAN-186 examples in that note are case-specific, not reusable job keywords.
+
 - **HTML, not LaTeX.** A self-contained `.html` with embedded CSS.
 - **PDF is the deliverable.** Open the HTML in a browser and print to PDF. The
   `@media print` rules handle page sizing.

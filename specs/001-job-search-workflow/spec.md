@@ -130,6 +130,29 @@ message arrives in both cases.
 
 ---
 
+### User Story 6 - Claim only what the records support (Priority: P1)
+
+As the operator, I want the job description to decide what a CV covers and the knowledge base to
+decide what it may claim, so that every line survives an interview.
+
+**Why this priority**: a CV overstated ownership (an observability standardisation delivered by a
+central SRE team was written as the candidate's own) and carried practice claims with no supporting
+record (SRE charter ownership, SLIs).
+
+**Independent Test**: review a finished CV against `Profile.md` and `Evidence Register.md`; every
+claim maps to a record or a stated gap, and no advert keyword appears as a claim without evidence.
+
+**Acceptance Scenarios**:
+
+1. **Given** an advert requirement with no supporting record, **When** a CV is drafted, **Then** the
+   requirement is recorded as a gap and does not become a CV claim.
+2. **Given** a contribution to a centrally-owned effort, **When** it is written, **Then** ownership
+   stays with the owning team and the candidate's role is stated as contribution.
+3. **Given** a finished CV, **When** it is verified, **Then** each claim has been audited sentence by
+   sentence and every PDF page checked for layout and extractable text.
+
+---
+
 ### Edge Cases
 
 - A role with no public posting (recruiter-sourced): the first line names the source and records
@@ -188,6 +211,14 @@ message arrives in both cases.
 - **FR-019**: The public skill repository MUST contain reusable workflow instructions and generic
   examples only. It MUST NOT contain candidate facts or generated CV artifacts.
 
+- **FR-020**: The job description determines what a CV covers; the knowledge base determines
+  what it may claim. Drafting MUST match each requirement in the advert to direct evidence, adjacent
+  experience, or a recorded gap. An advert keyword MUST NOT be promoted into a CV claim on its own.
+- **FR-021**: Before a CV is reported complete, the workflow MUST audit each claim sentence by
+  sentence against the career records and MUST inspect the rendered PDF page by page, checking both
+  layout and that the text extracts. A CV that has not passed both checks MUST NOT be reported
+  complete.
+
 ### Key Entities
 
 - **Opportunity**: a role advertised somewhere, with source, company, title, location, work
@@ -212,6 +243,10 @@ message arrives in both cases.
 - **SC-005**: 0 claims are removed without the operator being asked.
 - **SC-006**: Any run that could not read the current definition reports that fact; 0 runs proceed
   silently on a stale copy.
+- **SC-007**: 100% of CV claims are traceable to a career record or a recorded gap; 0 advert keywords
+  appear as claims without evidence.
+- **SC-008**: 0 CVs are reported complete before a per-claim audit and a page-by-page PDF check
+  (layout and text extraction) have run.
 
 ## Assumptions
 
