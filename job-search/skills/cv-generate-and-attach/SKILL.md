@@ -60,7 +60,8 @@ role; do not work from the title alone.
 `career_kb_root/Evidence Register.md`. Cite or note the source record for each selected claim in
 the working draft. An unproven requirement stays a gap rather than becoming a CV skill. Never
 remove an existing claim solely because the profile summary omits it; check the evidence register
-and ask the operator if it remains unverified.
+and ask the operator if it remains unverified. Record the gap in
+`career_kb_root/Skill Gap Register.md`; an unproven requirement never becomes a CV skill.
 
 ### 3. Verify the artefacts
 

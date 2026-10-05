@@ -49,7 +49,7 @@ Also record the **company head count** in the `people count` field, as text with
 
 ## CV evidence gate
 
-- Tailor from documented experience. Check role-specific claims against the private profile; do not claim required skills merely because they appear in the ad. If a listed requirement is unproven, record it as a gap rather than a CV skill.
+- Tailor from documented experience. Check role-specific claims against the private profile; do not claim required skills merely because they appear in the ad. If a listed requirement is unproven, record it in `career_kb_root/Skill Gap Register.md` rather than as a CV skill.
 - **Absence from the profile is not proof of absence.** Before removing a claim as unverified, ask
   the candidate. The profile is a summary and lags real experience: tools used briefly, work on a
   predecessor stack, or systems later replaced. Removing a true claim is as damaging as adding a

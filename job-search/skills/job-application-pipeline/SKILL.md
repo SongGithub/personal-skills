@@ -78,6 +78,8 @@ Given a URL (board listing, saved job, or direct link):
 `career_kb_root/Evidence Register.md`. If the advert asks for something unproven, it stays a gap —
 it does not become a CV bullet. Check the evidence register before treating omission from the
 profile summary as absence; ask before removing a true but undocumented claim.
+Record every unproven requirement in `career_kb_root/Skill Gap Register.md` — the gap never
+becomes a CV bullet.
 
 ### 3. Print to PDF
 
