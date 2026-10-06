@@ -24,6 +24,16 @@ Apply by default whenever drafting written communication — a chat reply, email
 - Em dash for parenthetical asides.
 - Oxford comma optional — pick one and stay consistent within a single piece of writing.
 
+## Craft rules
+
+- **Plain words over shorthand.** Spell symbols out into prose: write “implying”, “and”, “roughly” rather than arrows, approximation marks, or slashes. Symbols suit a hasty note; spelled-out words read as considered writing.
+- **Full sentences over clipped fragments.** Restore the dropped subject — “I tested it”, “I couldn’t confirm” — rather than writing a telegraphic status log. It should read as a person talking to a colleague.
+- **Active, verb-forward phrasing.** Turn noun-stacked labels into clauses that do something. Write “unresolved, and it’s customer-facing” rather than “unresolved, customer-facing risk”.
+- **Make it scannable.** Give each point a bold lead-in label so a busy reader can skim the shape of the message before reading the detail. Lead with the substance; do not bury it in prose.
+- **Warm without softening the ask.** “Let me know if you’ve already got a candidate in mind?” is friendlier than “Do you have a candidate?”, and it asks the same thing without hedging anything away.
+- **Short sentences for emphasis.** Split a judgment onto its own line — “Not comfortable.” — to land it more forthrightly than folding it into a longer sentence. Confidence without over-qualifying.
+- **Numbers as words in prose.** Write “four actors”, not “4 actors”. A small distinction, but it is the difference between a text message and a written communication.
+
 ## Example
 
 > **On target.** "The migration is safe. Backfill runs under a row lock, so concurrent writes queue rather than corrupt."
