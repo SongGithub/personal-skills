@@ -75,6 +75,10 @@ canonical career evidence; an unproven requirement remains a gap.
   resolve findings and rerender after changes; repeat until the reviewer reports zero
   outstanding findings. A self-review, unresolved conflict, or unavailable reviewer cannot
   satisfy this gate.
+- **FR-11** Name every CV artefact `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>`. The
+  candidate-name token `song_jin` is mandatory and must never be omitted; the HTML and PDF
+  share the same stem, and the Jira key is retained for traceability. The retired
+  `cv_<KEY>_<company-slug>` form is not used for new work.
 
 ## Acceptance test matrix
 
@@ -92,6 +96,7 @@ canonical career evidence; an unproven requirement remains a gap.
 | AT-10 | Posting with no stated closing date | `duedate` left empty; no invented date surfaced |
 | AT-11 | Staff-targeted CV with a Senior-only summary | Separate reviewer flags the level conflict; revised HTML and PDF are reviewed again |
 | AT-12 | Claim needs candidate confirmation or reviewer is unavailable | No CV sign-off or completed intake; report the exact outstanding issue |
+| AT-13 | Intake creates the role-tailored CV pair | Filenames are `cv_song_jin_<company-slug>_<KEY>.<ext>`; `song_jin` present in both; HTML and PDF share the stem |
 
 ## Out of scope
 

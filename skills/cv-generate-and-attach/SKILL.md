@@ -70,6 +70,11 @@ from the title alone. Follow `jira-job-records` for description cleaning.
 - Customise the **Summary** for this role and company
 - Reorder **Core Skills** so the 6–8 most relevant lead
 - Reorder **Experience** bullets so the most relevant achievements lead
+- Name the pair `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>` — the candidate name
+  `song_jin` is mandatory and must never be omitted, the HTML and PDF share the same stem,
+  and the Jira key is kept for traceability (for example `cv_song_jin_wesfarmers_KAN-189.html`
+  and `cv_song_jin_wesfarmers_KAN-189.pdf`). Do not use the retired
+  `cv_<KEY>_<company-slug>` form for new work.
 - Write the HTML and PDF to `<archive_dir>/<item-key>/` when `archive_dir` is
   configured; for intake before the key exists, use a provisional role-key folder and move
   the verified pair under the final issue key after creation. For a base CV, use a
@@ -137,6 +142,8 @@ delete the old one.
 ## Rules
 
 - HTML only. No LaTeX compilation step; the format is already ATS-friendly.
+- Filename rule: `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>`; the candidate-name token
+  `song_jin` is mandatory and must never be omitted.
 - Use the full API token. A truncated token fails authentication in a way that looks like a
   permissions problem.
 - Never paste a token into a prompt-visible field, even partially. Report "credentials

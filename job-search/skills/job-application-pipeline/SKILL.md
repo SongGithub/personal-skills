@@ -58,6 +58,12 @@ keywords.
 - The `document-design` skill owns the visual format: design tokens, 820px page,
   uppercase accent section headings, `break-inside: avoid` on each role.
 - `references/05-cv-templates.md` is authoritative for structure. Match it exactly.
+- **Filename.** Name every CV artefact with the candidate name:
+  `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>` (for example
+  `cv_song_jin_wesfarmers_KAN-189.html` and `cv_song_jin_wesfarmers_KAN-189.pdf`).
+  `song_jin` is mandatory and must never be omitted; the HTML and PDF share the same stem,
+  and the Jira key is kept for traceability. Do not use the retired
+  `cv_<KEY>_<company-slug>` form for new work.
 
 ## Workflow
 
@@ -87,7 +93,7 @@ Given a URL (board listing, saved job, or direct link):
     Developed, Architected, Delivered)
 - Tailor to the posting: reorder bullets so the relevant experience leads, adjust the
   tagline, add or drop core skills to match the advert
-- Write the HTML to `<archive_dir>/<role-key>/<company>_cv.html` when configured.
+- Write the HTML to `<archive_dir>/<role-key>/cv_song_jin_<company-slug>_<JIRA-KEY>.html` when configured.
 
 **Evidence gate.** Every claim must be traceable to `career_kb_root/Profile.md` or
 `career_kb_root/Evidence Register.md`. If the advert asks for something unproven, it stays a gap —
@@ -101,7 +107,7 @@ becomes a CV bullet.
 - Run the final editorial pass in `../cv-generate-and-attach/references/03-writing-style.md`
   before rendering; verify the role level, headline, summary and employment titles agree,
   and proofread the entire CV for natural wording, grammar and evidence strength.
-- Render the HTML in a browser and print to `<archive_dir>/<role-key>/<company>_cv.pdf`.
+- Render the HTML in a browser and print to `<archive_dir>/<role-key>/cv_song_jin_<company-slug>_<JIRA-KEY>.pdf`.
 - **Verify every page.** A4 or Letter as configured, legible type, no browser date or URL
   headers, correct page count. A nearly blank trailing page is a failure even if the
   document is the right length.

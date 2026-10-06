@@ -14,6 +14,8 @@
    metadata (including **Closes:** when a closing date is stated), nonempty fit/gaps and
    final 200 characters against the source.
 4. Generate the role-tailored HTML, render PDF, inspect every page and extracted text.
+   Name the pair `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>`: the candidate-name token
+   `song_jin` is mandatory and never omitted, and the HTML and PDF share the stem.
    Preflight both files before creating the Jira issue.
 5. Create the Backlog issue using configured Jira fields, setting `duedate` (Due date) when
    the posting states a closing date and leaving it empty otherwise. Immediately attach HTML

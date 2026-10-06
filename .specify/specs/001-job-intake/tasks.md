@@ -14,3 +14,6 @@
 - [x] T009 Encode the closing-date rule: set `duedate` (Due date) when the posting states a
       deadline and surface **Closes:** in metadata; leave empty otherwise; treat a passed
       date as a dead-lead signal.
+- [x] T010 Encode the CV artefact filename convention
+      `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>`: the candidate name `song_jin` is
+      mandatory, and the HTML and PDF share the same stem.

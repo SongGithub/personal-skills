@@ -219,8 +219,11 @@ evidence, rendering, upload and verification. Filing a CV is not submitting an a
 ## Attachments
 
 - Store and attach both the role-tailored HTML source and the rendered PDF.
-- The PDF filename must match the HTML filename, for example
-  `cv_<KEY>_<company-slug>.pdf` alongside `cv_<KEY>_<company-slug>.html`.
+- Name the pair `cv_song_jin_<company-slug>_<JIRA-KEY>.<ext>`, for example
+  `cv_song_jin_wesfarmers_KAN-189.html` and `cv_song_jin_wesfarmers_KAN-189.pdf`.
+  The candidate-name token `song_jin` is mandatory and must never be omitted; the HTML and
+  PDF share the same stem, and the Jira key is retained for traceability. Do not use the
+  retired `cv_<KEY>_<company-slug>` form for new work.
 - Upload the replacement first, verify it landed with the expected name and size, then delete the
   superseded copy. Do not leave two versions attached.
 
