@@ -5,6 +5,15 @@ description: >-
 allowed-tools: Read, Glob, Grep, WebFetch, WebSearch, Edit, Write, Bash
 ---
 
+## Constitution
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
+Read `.specify/memory/constitution.md` and `.specify/specs/001-job-intake/spec.md`
+before automated KAN intake; both are binding for description and CV completion gates.
+
 # Apply Jobs Workflow
 
 A pipeline for taking a role from posting to filed application package.
@@ -105,9 +114,12 @@ Branch on `tracker_backend`.
 
 **`jira`** — create the issue per the evidence gate in the `job-screening-criteria` skill:
 source URL, company, title, location and work pattern, posted date, salary as shown, a
-non-empty fit rationale, explicit gaps, and the complete job description through its final
-paragraph. Attach the PDF and HTML, then read the issue back and compare the copied
-description against the source, including the final 200 characters. Follow `jira-job-records`
+non-empty fit rationale, explicit gaps, and the complete **cleaned real JD** through its
+final paragraph. Use the exact description order and content exclusions in `jira-job-records`:
+source hyperlink on line 1, bold metadata, fit, gaps, then only the cleaned JD. Preflight the
+tailored HTML and PDF before creation; immediately attach both after creation. Read back the
+description and both attachment names and sizes. Compare the JD with the source, including
+the final 200 characters of actual role text. Do not report intake done if either CV is missing. Follow `jira-job-records`
 for stage changes: a prepared CV remains in To Do; only a candidate-confirmed submission
 enters `Submitted - Awaiting reply`. When closing, select the specific Done status and record
 the outcome evidence.
@@ -129,17 +141,18 @@ Only if asked. Style rules in `references/03-writing-style.md`, structure in
 ## Definition of done
 
 Do not report this pipeline complete until you have checked the result against
-`specs/001-job-search-workflow/spec.md` and can state, for each requirement that applies to the
+`.specify/specs/001-job-intake/spec.md` and can state, for each requirement that applies to the
 run, that it was met:
 
-- Records carry title, start date, source, head count, the full description and the job link on
-  the first line, each confirmed by read-back.
+- Records carry title, start date, source, head count, first-line job link, bold metadata, fit,
+  gaps and the complete cleaned real JD, each confirmed by read-back.
+- Every new KAN issue has its role-tailored HTML and PDF CV attached, with names and sizes
+  confirmed by read-back; an unverified issue is incomplete, not intake-done.
 - Every new record is in the intake lane.
 - Every verdict is supported by its stated reasons.
 - Any claim absent from the profile was raised, not deleted.
 - The run announced its outcome, including when it found nothing.
 - Any source, step or check that could not be completed was reported as such.
 
-`scripts/check-workflow-conformance.sh` verifies the static side of this (the definition lives
-in exactly one place, no retired names survive, every cross-reference resolves). Run it before
-committing a change to this pipeline.
+If `scripts/check-workflow-conformance.sh` exists, run it before committing a change to this
+pipeline. The binding rules live in `.specify/memory/constitution.md`.

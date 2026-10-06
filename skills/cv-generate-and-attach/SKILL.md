@@ -5,10 +5,20 @@ description: >-
 allowed-tools: Read, Glob, Grep, WebFetch, Edit, Write, Bash
 ---
 
+## Constitution
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
+Read `.specify/memory/constitution.md` and `.specify/specs/001-job-intake/spec.md`
+before automated KAN intake; both are binding for description and CV completion gates.
+
 # CV Attach Workflow
 
-Generate a tailored CV for a role already tracked, attach it to its tracker item, and prove
-the attachment is there.
+Generate a tailored CV for a role at intake **or** already tracked, attach it to its tracker
+item, and prove the attachment is there. For KAN intake, preflight the HTML and PDF before
+issue creation, then immediately upload and verify after the issue key exists.
 
 ## Configuration
 
@@ -34,6 +44,7 @@ copy of this skill.
 
 ## Trigger
 
+- A role is selected for automated KAN intake (before issue creation), or
 - A tracked item enters the active lane or issue state, or
 - The candidate says "generate a CV for \<item\>".
 
@@ -41,8 +52,9 @@ copy of this skill.
 
 ### 1. Read the tracked item
 
-Fetch the job description and summary. Treat the description as the source of truth for the
-role; do not work from the title alone.
+For existing items, fetch the cleaned JD and summary. At intake, fetch the original posting,
+isolate the complete real JD from site chrome, and use that JD as the role source. Do not work
+from the title alone. Follow `jira-job-records` for description cleaning.
 
 ### 2. Generate the tailored CV
 
@@ -58,7 +70,9 @@ role; do not work from the title alone.
 - Reorder **Core Skills** so the 6–8 most relevant lead
 - Reorder **Experience** bullets so the most relevant achievements lead
 - Write the HTML and PDF to `<archive_dir>/<item-key>/` when `archive_dir` is
-  configured; for a base CV, use a `Base CV` subfolder. Create the folder if needed.
+  configured; for intake before the key exists, use a provisional role-key folder and move
+  the verified pair under the final issue key after creation. For a base CV, use a
+  `Base CV` subfolder. Create the folder if needed.
 
 **Evidence gate.** Every claim must be traceable to `career_kb_root/Profile.md` or
 `career_kb_root/Evidence Register.md`. Cite or note the source record for each selected claim in
@@ -94,8 +108,8 @@ and `trello.token_env`, then apply the verification rules in the `trello-card-ru
 Do not report success on the strength of a 200 response alone:
 
 - Read the item back
-- Confirm the attachment name and size are what you uploaded
-- Confirm exactly one copy of the file is present
+- Confirm **both HTML and PDF** attachment names and sizes match what you uploaded
+- Confirm exactly one current copy of each file is present
 
 If a defective attachment already exists, upload the corrected file first, verify it, then
 delete the old one.

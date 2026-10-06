@@ -86,6 +86,13 @@ Render and inspect every artefact before saying it is finished.
 - If a source could not be checked, or a step was skipped, say so plainly. Never describe a
   partial run as a success.
 
+### VIII. The Repository Is The Single Source Of Truth (NON-NEGOTIABLE)
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth for every job-search skill. Before using any job-search skill, `git pull` the
+repository and run from its `skills/` tree. If the deployed extension differs, sync it from
+the repo before running a workflow.
+
 ## Additional Constraints
 
 - Australian English spelling throughout.
@@ -111,7 +118,14 @@ Amendments require an explicit operator decision and must be recorded here with 
 Every review of a skill change should check the change against these principles before
 anything else.
 
-**Version**: 1.1.0 | **Ratified**: 2026-10-02 | **Last Amended**: 2026-10-03
+**Version**: 1.2.0 | **Ratified**: 2026-10-02 | **Last Amended**: 2026-10-06
+
+**Amendment (2026-10-06)**: Added Principle VIII — the personal-skills GitHub repository
+(github.com/SongGithub/personal-skills) is the single source of truth. Before using any
+job-search skill, `git pull` the repository and run from its `skills/` tree; if the deployed
+extension differs, sync it from the repo first. Ported the automated KAN intake hardening
+(cleaned-JD contract and intake CV gate) from the deployed extension into the repo so the repo
+is authoritative for those rules too.
 
 **Amendment (2026-10-03)**: The operator explicitly selected the private iCloud Obsidian KB as
 the canonical store for all sensitive career facts. This replaces the previous `$JOB_SEARCH_HOME`

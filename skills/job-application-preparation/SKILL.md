@@ -5,6 +5,12 @@ description: >-
 allowed-tools: Read, Glob, Grep, WebFetch, WebSearch, Edit, Write, AskUserQuestion
 ---
 
+## Constitution
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
 # Job Application Assistant
 
 Before evaluating a role or tailoring a CV, read the sibling [`job-screening-criteria` skill](../job-screening-criteria/SKILL.md). Its current salary and title configuration and evidence gates take precedence over older preferences in this skill or memory.

@@ -6,6 +6,10 @@ description: >-
 
 ## Constitution
 
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
 This repository is governed by a constitution at `.specify/memory/constitution.md`. It is
 binding and it supersedes conflicting instructions here. Read it before changing or applying
 any skill in this repository.
@@ -39,7 +43,22 @@ Title words are a screening cue, not proof of level. A role with a generic title
 
 ## Jira evidence gate
 
-For each selected role, save its exact source URL, company, title, location/work pattern, posted date and salary as shown, a nonempty evidence-based fit rationale, explicit gaps/risks, and the **complete source job description through its final paragraph**. Do not turn inference about salary, seniority, stability, or growth path into a fact. Read the issue back after writing; compare the copied description with the source, including the final 200 characters. An issue with blank fit/gaps or a truncated JD is incomplete and must be fixed before reporting success.
+For each selected role, save its exact source URL, company, title, location/work pattern,
+posted date and salary as shown, a nonempty evidence-based fit rationale, explicit gaps/risks,
+and the **complete real job description through its final paragraph**, cleaned of page chrome
+per `jira-job-records` and `.specify/specs/001-job-intake/spec.md`. Do not turn inference
+about salary, seniority, stability, or growth path into a fact. The Jira description must have
+the posting hyperlink on line 1, then bold metadata, fit rationale, gaps and only the cleaned
+JD. Exclude related jobs, alerts, Premium promos, social metrics, applicant charts and separate
+"About the company" widgets; preserve employer-written role content. Read the issue back and
+compare the cleaned JD with the source, including the final 200 characters of actual role text.
+Blank fit/gaps, page junk, or a truncated JD fails the evidence gate.
+
+**No KAN ticket may be created without a tailored CV attached as part of intake.** Preflight
+the evidence-backed HTML and rendered PDF before issue creation; after creation immediately
+attach both, read back their names and sizes, and leave intake incomplete until verified. If
+Jira attachment upload fails, repair the issue or report its key as incomplete. Follow
+`job-application-pipeline`, `cv-generate-and-attach`, and `jira-job-records`.
 
 Use the summary `[Role Title] — [Company]`, with no prefix — the tracker already scopes the record to job hunting.
 

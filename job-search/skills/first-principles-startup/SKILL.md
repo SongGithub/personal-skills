@@ -6,6 +6,12 @@ description: >
   第一性原理创业与求职法 — 从马斯克「归零重启」思维出发,用生存现金流、白痴指数、长期物理第一步三个步骤,指导创业和求职
 ---
 
+## Constitution
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
 # 第一性原理创业与求职法
 
 用这个 skill 的时候,你是在帮一个人从零开始——不管是创业还是换工作——核心思路:拆掉「历来如此」的类比思维,回到物理级的事实,然后重建。

@@ -5,9 +5,13 @@ description: How to file a job opportunity as a Jira issue — summary format, r
 
 ## Constitution
 
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
 This repository is governed by a constitution at `.specify/memory/constitution.md`. It is
-binding and it supersedes conflicting instructions here. Read it before changing or applying
-any skill in this repository.
+binding and it supersedes conflicting instructions here. Read it and
+`.specify/specs/001-job-intake/spec.md` before changing or applying intake rules.
 
 
 # Jira Job Records
@@ -27,7 +31,7 @@ an older copy of this skill, and never print a credential.
 | Start date | the date the record is created |
 | Source | where the opportunity came from, e.g. `seek` or `linkedin` |
 | Priority | set from the screening result |
-| Description | the job link as a hyperlink on the first line, then the complete job description |
+| Description | line 1: job hyperlink; then bold metadata, fit rationale, gaps, and only the cleaned, complete real JD |
 
 **Lane.** Create the record in the **Backlog** lane. Never create directly in To Do: promotion to
 To Do is a triage decision for the candidate, not the intake step.
@@ -93,6 +97,9 @@ Format it as the first line of the description:
 
     [<Role Title> — <Company>](<posting url>)
 
+A valid source URL is required for a new automated-intake ticket. If no posting URL can be
+verified, hold the candidate outside Jira and report the blocker; do not create a linkless ticket.
+
 If the project has a dedicated URL or link field, set that as well — but the description link is
 the one that must always be present, because it survives field-configuration changes and is
 exported with the description.
@@ -102,15 +109,19 @@ channel later.
 
 ## Verify the record after creating it
 
-Read the issue back and confirm both of these before reporting success. Both have been silently
-missing in real runs, so treat this as a required step, not a formality:
+Read the issue back and confirm **all** of these before reporting intake success:
 
 1. **The Source field is populated.** An empty Source field cannot be filtered by channel, which is
    the only reason the field exists. Values come from `jira.source_values`; use `recruiter` for a
    role obtained through a recruiter and `company-site` for one taken from an employer's own site.
 2. **The first line of the description is the job hyperlink.** Not a heading, not a title, not the
-   link buried mid-paragraph. If the role has no public posting URL, say so explicitly on the first
-   line instead, naming where it came from.
+   link buried mid-paragraph.
+3. **The description contains bold metadata, fit rationale, gaps and the cleaned JD only.** Compare
+   the real JD with the source, including its final paragraph and final 200 characters; reject
+   copied page chrome or missing role content.
+4. **The role-tailored HTML and PDF CV are attached.** Read back both attachment names and sizes,
+   and confirm exactly one current copy of each. A new ticket without verified CV attachments is
+   incomplete; repair or report it, never call intake done.
 
 ## Duplicate check — do this before creating anything
 
@@ -143,12 +154,59 @@ pass:
 - no wall-of-text paragraphs; break them up
 - no nested numbered lists
 
-Copy the **complete** job description through its final paragraph. A truncated description is an
-incomplete record.
+Use this exact section order after the first-line hyperlink:
+
+**Role:** <title>  **Company:** <company>
+**Location / work pattern:** <as advertised>
+**Posted:** <as shown or unverified>  **Salary:** <as shown or unverified>
+**Source:** <configured source value>
+
+## Fit rationale
+<nonempty, evidence-based reasons>
+
+## Gaps and risks
+<explicit gaps/risks; say "None identified" only after checking>
+
+## Job description
+<cleaned real role content, preserving headings, requirements, benefits and final paragraph>
+
+The description is **not** a raw page scrape. Copy the complete real role content through its
+final paragraph, in its original order and wording where practicable. Clean only page furniture;
+do not trim real responsibilities, qualifications, company-provided role context or benefits just
+because they appear near the page bottom. Check the cleaned JD against the source, especially
+the final paragraph and final 200 characters of actual role text.
+
+### Content to exclude from the cleaned JD
+
+- Related-job modules: LinkedIn "More jobs", "Similar jobs", "Jobs you may be interested in";
+  SEEK "Similar jobs" and "Explore related jobs".
+- Alerts and calls to action: "Set alert for similar jobs", "Create job alert", "Apply",
+  "Save", sign-in prompts and app-download banners.
+- Upsells and ads: LinkedIn "Premium" promotions, subscription trials, promoted-job labels,
+  SEEK sponsored recommendations and advertising panels.
+- Social and audience statistics: follower counts, connection counts, number of applicants,
+  "See how you compare to other applicants", applicant-seniority and education charts.
+- Generic platform/company widgets: LinkedIn "About the company" boilerplate, follow buttons,
+  employee tiles, navigation, cookie notices, footer, salary-estimate widgets and page chrome.
+  Preserve an employer-written "About us" paragraph **inside the actual JD**; exclude only
+  the separate platform widget.
+
+Do not put excluded material in metadata, fit, gaps or an appendix to evade this rule.
+
+## Intake CV gate
+
+**No KAN ticket may be created without a tailored CV attached as part of the same intake
+transaction.** Because Jira issues must exist before attachments can be uploaded, preflight the
+role-specific HTML and rendered PDF before issue creation, create the Backlog issue, immediately
+attach both files, and read back the issue and attachments. Do not mark intake complete, report a
+successful ticket, or move it onward until verification passes. If upload fails, repair the
+incomplete issue in this run or report its key and blocker explicitly; never silently leave it
+as a completed intake. Follow `job-application-pipeline` and `cv-generate-and-attach` for
+evidence, rendering, upload and verification. Filing a CV is not submitting an application.
 
 ## Attachments
 
-- Store both the HTML source and the rendered PDF.
+- Store and attach both the role-tailored HTML source and the rendered PDF.
 - The PDF filename must match the HTML filename, for example
   `cv_<KEY>_<company-slug>.pdf` alongside `cv_<KEY>_<company-slug>.html`.
 - Upload the replacement first, verify it landed with the expected name and size, then delete the

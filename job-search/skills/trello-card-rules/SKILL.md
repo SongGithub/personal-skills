@@ -6,6 +6,12 @@ description: >
   logging each card to the tracker database. Applies whenever a job posting becomes a card.
 ---
 
+## Constitution
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
 # Trello Card Rules
 
 Applies only when `tracker_backend: trello` in `$JOB_SEARCH_HOME/integrations.yaml`. If the

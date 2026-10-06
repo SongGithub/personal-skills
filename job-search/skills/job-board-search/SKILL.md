@@ -5,6 +5,15 @@ description: >-
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, WebSearch
 ---
 
+## Constitution
+
+The personal-skills GitHub repository (github.com/SongGithub/personal-skills) is the single
+source of truth: `git pull` it and run from its `skills/` tree; if the deployed extension
+differs, sync it from the repo first.
+
+Read `.specify/memory/constitution.md` and `.specify/specs/001-job-intake/spec.md`
+before automated KAN intake; both are binding for description and CV completion gates.
+
 # Job Scraper
 
 Discovers new postings, filters them against the candidate's profile, and reports only what is
@@ -137,11 +146,31 @@ Found X new positions (Y high, Z medium, W low match).
 
 Then 2–3 bullets per high match: why it fits, requirements to verify, red flags.
 
-Finish by asking whether to evaluate any in detail or apply. A full description is needed
-before the `job-application-preparation` workflow can run — the search step returns only a teaser,
-so fetch the detail first.
+For an interactive search, finish by asking whether to evaluate any in detail or apply.
+For an authorised automated intake run, continue to Step 7 without asking. A full
+description is needed before either path can evaluate or create an issue — the search step
+returns only a teaser, so fetch the detail first.
 
-## Step 7 — Update the tracker
+## Step 7 — Automated Jira intake (only for selected roles)
+
+The presentation-only `/scrape` flow stops after Step 6 unless the candidate selects a
+role. On an authorised automated intake run, use `job-screening-criteria` to select and
+deduplicate roles, then follow `.specify/specs/001-job-intake/spec.md` and `jira-job-records`.
+A teaser is insufficient: fetch the source posting and isolate the complete **real** JD.
+
+Preflight an evidence-backed, role-tailored HTML CV and rendered PDF via
+`job-application-pipeline` and `cv-generate-and-attach` **before** creating the KAN issue.
+The issue description starts with the source hyperlink on line 1, then bold metadata, a
+nonempty fit rationale, explicit gaps, and only the cleaned JD through its final paragraph.
+Exclude LinkedIn/SEEK page chrome: "More jobs", "Set alert for similar jobs", "Premium",
+follower counts, applicant-seniority/education charts and separate "About the company"
+widgets. Immediately attach both CV files after creation and read the issue back to verify
+description, final real-JD paragraph, attachment names and sizes. **No KAN ticket may be
+created without a tailored CV attached as part of intake.** Until verification passes, the
+ticket is incomplete, not intake-done; repair or report the issue key and blocker. Do not
+submit an application or move beyond Backlog without the candidate's separate decision.
+
+## Step 8 — Update the tracker
 
 If the candidate decides to apply, add a row to `tracker_path`.
 
