@@ -29,6 +29,7 @@ an older copy of this skill, and never print a credential.
 |-------|-------|
 | Summary | `<Role Title> — <Company>` |
 | Start date | the date the record is created |
+| Due date | the posting's closing date as YYYY-MM-DD if stated; leave empty otherwise |
 | Source | where the opportunity came from, e.g. `seek` or `linkedin` |
 | Priority | set from the screening result |
 | Description | line 1: job hyperlink; then bold metadata, fit rationale, gaps, and only the cleaned, complete real JD |
@@ -87,6 +88,13 @@ appear in the create-metadata API. Read the id from the issue's `expand=names` o
 and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`.
 An unsourced number is worse than no number.
 
+**Closing date.** If the posting states an application closing/deadline date (for example
+"closes on 2 October" or "ad ends 17 Oct 2026"), set the standard Jira `duedate` (Due date)
+field to that date as `YYYY-MM-DD` and surface it as **Closes:** in the description metadata.
+If the posting states no closing date, leave the field empty — never invent one. A closing
+date that has passed is a screening signal (likely dead lead): flag it rather than filing a
+fresh record.
+
 ## The job link
 
 Keep the link to the original posting **at the top of the description**, as a hyperlink with
@@ -122,6 +130,9 @@ Read the issue back and confirm **all** of these before reporting intake success
 4. **The role-tailored HTML and PDF CV are attached.** Read back both attachment names and sizes,
    and confirm exactly one current copy of each. A new ticket without verified CV attachments is
    incomplete; repair or report it, never call intake done.
+5. **The Due date is set only when stated.** If the posting stated a closing date, `duedate`
+   holds that date as YYYY-MM-DD and **Closes:** appears in the metadata. If not, `duedate` is
+   empty and no date was invented.
 
 ## Duplicate check — do this before creating anything
 
@@ -159,6 +170,7 @@ Use this exact section order after the first-line hyperlink:
 **Role:** <title>  **Company:** <company>
 **Location / work pattern:** <as advertised>
 **Posted:** <as shown or unverified>  **Salary:** <as shown or unverified>
+**Closes:** <closing date as shown, only when stated>
 **Source:** <configured source value>
 
 ## Fit rationale

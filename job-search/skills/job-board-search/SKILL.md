@@ -115,6 +115,9 @@ candidate has it.
 
 Apply the location filter from `references/search-queries.md`.
 
+Treat a posting whose stated closing date has already passed as a likely dead lead — rate it
+Low or skip it.
+
 ## Step 5 — Store
 
 Record every surfaced job, including skipped ones:
@@ -167,8 +170,11 @@ follower counts, applicant-seniority/education charts and separate "About the co
 widgets. Immediately attach both CV files after creation and read the issue back to verify
 description, final real-JD paragraph, attachment names and sizes. **No KAN ticket may be
 created without a tailored CV attached as part of intake.** Until verification passes, the
-ticket is incomplete, not intake-done; repair or report the issue key and blocker. Do not
-submit an application or move beyond Backlog without the candidate's separate decision.
+ticket is incomplete, not intake-done; repair or report the issue key and blocker. If the
+posting states a closing date, set the Jira `duedate` (Due date) field to it as YYYY-MM-DD and
+surface it as **Closes:** in the description metadata; otherwise leave the field empty — never
+invent one. Do not submit an application or move beyond Backlog without the candidate's
+separate decision.
 
 ## Step 8 — Update the tracker
 
@@ -179,7 +185,8 @@ If the candidate decides to apply, add a row to `tracker_path`.
 1. **Never fabricate postings.** Present only what the CLI or a real fetch returned.
 2. **Always dedup** against both `seen_jobs.json` and `tracker_path`.
 3. **Honour the configured location tiers.** Skip on-site roles outside them unless opted in.
-4. **Only open roles.** Results are live, but skip anything visibly stale.
+4. **Only open roles.** Results are live, but skip anything visibly stale — including a posting
+   whose stated closing date has already passed (likely dead lead).
 5. **Pull the full description before evaluating or applying.**
 6. **Discipline over title.** Screen on the primary language and discipline in the requirements, never on the job title alone. A senior title on a stack the candidate does not have is a Low match.
 7. **Efficiency.** Filter on title, teaser and salary first; do not fetch every result.

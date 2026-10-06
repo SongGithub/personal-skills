@@ -39,12 +39,14 @@ Title words are a screening cue, not proof of level. A role with a generic title
 - Use the candidate's private profile and career notes (`$JOB_SEARCH_HOME/profile.md`) alongside the settings above. Prefer stable product companies, mature engineering, hybrid or remote work without relocation, and ownership of platform reliability. Exclude consultancies, agencies, outsourcing, startups, temporary contracts, Azure-first roles requiring deep Azure/Bicep, and product/API roles without a substantial platform remit.
 - On the authorised weekday automation, attempt both signed-in LinkedIn Jobs and SEEK before creating an issue. Keep browsing focused: two LinkedIn and three SEEK queries are enough for a normal run. A source failure must be reported, not concealed.
 - Verify promising ads at their source. Deduplicate by source URL or job ID and by company plus role against existing KAN issues. Rank by fit, then confirmed base pay. Zero issues is a valid result; the configured maximum is a ceiling.
+- A posting whose stated closing date has already passed is a screening signal (likely dead lead); skip or flag it rather than filing a fresh record.
 - Keep time and token use bounded. Do the cheap screening and deduplication before drafting CVs. Do not generate packages merely to fill the quota.
 
 ## Jira evidence gate
 
 For each selected role, save its exact source URL, company, title, location/work pattern,
-posted date and salary as shown, a nonempty evidence-based fit rationale, explicit gaps/risks,
+posted date, salary and closing date (where stated) as shown, a nonempty evidence-based fit
+rationale, explicit gaps/risks,
 and the **complete real job description through its final paragraph**, cleaned of page chrome
 per `jira-job-records` and `.specify/specs/001-job-intake/spec.md`. Do not turn inference
 about salary, seniority, stability, or growth path into a fact. The Jira description must have
@@ -63,6 +65,11 @@ Jira attachment upload fails, repair the issue or report its key as incomplete. 
 Use the summary `[Role Title] — [Company]`, with no prefix — the tracker already scopes the record to job hunting.
 
 Set the **Start date** field to the date the record is created, so the pipeline entry date is recorded rather than inferred. Record where the opportunity came from (SEEK, LinkedIn, recruiter, referral, company site) in the `Source` field where one exists, otherwise as a `Source:` line in the description.
+
+Set the **Due date** (`duedate`) field to the posting's closing date as YYYY-MM-DD when stated,
+and surface it as **Closes:** in the description metadata. If no closing date is stated, leave
+the field empty — never invent one. A closing date that has passed is a screening signal
+(likely dead lead).
 
 Also record the **company head count** in the `people count` field, as text with the source and as-of date, for example `~3,090 (Jun 2026 annual report)` or `501-1,000 (LinkedIn band)`. Research it when the record is created rather than leaving it blank; a headline number with its source is far more useful than an unsourced figure. If head count genuinely cannot be found, say so in the field rather than guessing.
 
