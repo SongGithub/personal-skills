@@ -47,10 +47,10 @@ a second source of truth.
 
 ## Format rules (hard constraints)
 
-Before drafting or revising a CV, read the Obsidian `career dev` vault note
-`00 - 面试准备 Interview Prep/CV 写作与审校方法 — 证据、定位、版式.md`.
-Use its claim audit and PDF checks together with the current `career_kb_root` records.
-The KAN-186 examples in that note are case-specific, not reusable job keywords.
+Before drafting or revising a CV, read `career_kb_root/CV Writing and Review Method.md`
+in the private KB. Use its claim audit and PDF checks together with the current
+`career_kb_root` records. Archived examples are case-specific, not reusable job
+keywords.
 
 - **HTML, not LaTeX.** A self-contained `.html` with embedded CSS.
 - **PDF is the deliverable.** Open the HTML in a browser and print to PDF. The
@@ -74,8 +74,9 @@ Given a URL (board listing, saved job, or direct link):
 
 ### 2. Tailor the CV
 
-- Start from the configured `cv_template` path (relative paths resolve under
-  `$JOB_SEARCH_HOME/cv/`). Treat it as a layout reference only and replace all personal claims
+- Start from the configured `cv_template` path: use an absolute path as given, or
+  resolve a relative path under `$JOB_SEARCH_HOME/cv/`. The active template may live in
+  the private KB. Treat it as a layout reference only and replace all personal claims
   with facts verified in the Obsidian career records.
 - Apply `references/05-cv-templates.md`:
   - Single-line name, tagline with an em dash (`Title — Skill · Skill · Skill`)
@@ -97,10 +98,17 @@ becomes a CV bullet.
 
 ### 3. Print to PDF
 
+- Run the final editorial pass in `../cv-generate-and-attach/references/03-writing-style.md`
+  before rendering; verify the role level, headline, summary and employment titles agree,
+  and proofread the entire CV for natural wording, grammar and evidence strength.
 - Render the HTML in a browser and print to `<archive_dir>/<role-key>/<company>_cv.pdf`.
 - **Verify every page.** A4 or Letter as configured, legible type, no browser date or URL
   headers, correct page count. A nearly blank trailing page is a failure even if the
   document is the right length.
+- Follow the two-agent adversarial review loop in `../cv-generate-and-attach/SKILL.md`.
+  The drafting agent revises and rerenders; the separate reviewer checks the entire latest
+  HTML and PDF until it reports zero outstanding findings. Hold the package if review
+  cannot finish or a factual question needs the candidate.
 
 ### 4. Archive
 

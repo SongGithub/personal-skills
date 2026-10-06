@@ -20,6 +20,11 @@ so a ticket never masquerades as a ready package while its CV is missing.
    attached as part of the same intake transaction.
 3. **Given** a CV attachment, **then** the issue remains Backlog until triage and never
    implies a submitted application.
+4. **Given** a drafted HTML and PDF CV, **when** intake preflights the package, **then**
+   a separate agent adversarially reviews the complete pair against the JD and canonical
+   career evidence. The drafter revises and rerenders until that reviewer reports zero
+   outstanding findings on the latest pair. An unresolved fact or unavailable reviewer
+   leaves the package incomplete.
 
 ### P1 — Clean, complete JD
 As the candidate, I want the issue description to contain only useful role content.
@@ -65,6 +70,11 @@ canonical career evidence; an unproven requirement remains a gap.
   (Due date) field to that date as YYYY-MM-DD and surface it as **Closes:** in the description
   metadata. If no closing date is stated, leave the field empty — never invent one. A closing
   date that has passed is a screening signal (likely dead lead).
+- **FR-10** Before filing a CV, require a separate adversarial reviewer agent to inspect
+  the full HTML and PDF against the JD and canonical evidence. The drafting agent must
+  resolve findings and rerender after changes; repeat until the reviewer reports zero
+  outstanding findings. A self-review, unresolved conflict, or unavailable reviewer cannot
+  satisfy this gate.
 
 ## Acceptance test matrix
 
@@ -80,6 +90,8 @@ canonical career evidence; an unproven requirement remains a gap.
 | AT-08 | Duplicate URL or company-role | Update existing record where appropriate; do not create duplicate |
 | AT-09 | Posting with "closes on 2 October" / "ad ends 17 Oct 2026" | `duedate` set as YYYY-MM-DD; **Closes:** in description metadata |
 | AT-10 | Posting with no stated closing date | `duedate` left empty; no invented date surfaced |
+| AT-11 | Staff-targeted CV with a Senior-only summary | Separate reviewer flags the level conflict; revised HTML and PDF are reviewed again |
+| AT-12 | Claim needs candidate confirmation or reviewer is unavailable | No CV sign-off or completed intake; report the exact outstanding issue |
 
 ## Out of scope
 

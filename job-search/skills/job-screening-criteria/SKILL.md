@@ -84,6 +84,9 @@ Also record the **company head count** in the `people count` field, as text with
   session before the pattern was caught.
 - Keep employment dates accurate. Do not editorialise about why a role ended anywhere in the HTML or PDF. Search both final files for phrases that editorialise about a departure, then read the sentence in context, since a keyword check alone is insufficient.
 - Render and inspect **every page** of the final PDF. Use A4, legible type, sensible page balance, and no browser date/URL headers or footers. Verify text extraction, dates, and page count. A nearly blank trailing page fails even if the PDF has two pages.
+- Require the separate-agent adversarial review loop in `cv-generate-and-attach`.
+  The drafting and reviewing agents iterate on the complete HTML and PDF until the reviewer
+  reports zero outstanding findings. An unresolved factual conflict blocks completion.
 - Attach the HTML and PDF only after these checks. Read back the Jira attachment names and sizes. If replacing a defective attachment, upload the corrected files first, verify them, then remove the old copies so reviewers see one clear version.
 
 ## Reporting and scope

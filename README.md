@@ -124,21 +124,16 @@ reappears under `skills/` or a plugin directory.
 
 ## Personal data is deliberately not in this repository
 
-The skills contain the *method*: rubrics, templates, checklists, writing rules. They contain no
-facts about any person. Candidate-specific data lives outside the repository under one directory:
+The skills contain the *method*: rubrics, templates, checklists, and writing rules. They
+contain no candidate facts. Point `JOB_SEARCH_HOME` at the private KB's job-search
+settings folder. Its `integrations.yaml` holds machine-specific paths and tracker settings;
+`career_kb_root` points to the canonical career records, and `cv_template` may be an
+absolute path to the active, fact-free KB layout template. Generated CVs go under the
+configured KB `archive_dir`.
 
-```
-$JOB_SEARCH_HOME            (default: ~/.config/job-search/)
-  preferences.yaml          salary floor, title ranges, per-run limits
-  integrations.yaml         tracker backend, board/lane IDs, archive dir, CV template,
-                            search locations, helper CLI paths
-  profile.md                who the candidate is: history, skills, education
-  evidence.md               STAR stories and achievements, with numbers
-  targets.md                environments to prefer and to avoid
-  career-notes.md           financial position and career framing
-  cv/                       real CV variants, including the master template
-  skill-gap-plan/                  generated skill-gap-plan reports
-```
+Older local tools may still use `~/.config/job-search/` as a compatibility entry point.
+Those files should link to the canonical KB files, not remain a second copy. Archived CVs
+and source snapshots are never the active template or evidence source.
 
 Start from the `*.example.*` files shipped alongside each skill and replace the placeholders.
 If a required file is missing or unreadable, the skill **stops and names the file** rather than
@@ -168,8 +163,9 @@ CI runs these on every push and pull request:
 - `python3 evals/run.py` — 176 assertions across frontmatter validity, reference integrity,
   config-key documentation, description quality, and document-design token compliance.
   The document-design suite also checks the CV template named by
-  `integrations.yaml` — the document you actually send to employers. It reads
-  `$JOB_SEARCH_HOME`, so it skips on CI where that does not exist.
+  `integrations.yaml` — the layout template used for CVs. Set
+  `JOB_SEARCH_HOME` to the private KB settings folder for local checks; it skips
+  on CI where that folder is unavailable.
 
 **The denylist is not stored in this repository.** Publishing a list of the very names and employers
 you want to keep private defeats the purpose, so it is supplied at run time from outside:
@@ -177,7 +173,7 @@ you want to keep private defeats the purpose, so it is supplied at run time from
 | Context | Source |
 |---------|--------|
 | CI | the `PERSONAL_DENYLIST` repository secret |
-| Local | `$PERSONAL_DENYLIST_FILE`, or `~/.config/job-search/denylist.txt` |
+| Local | `$PERSONAL_DENYLIST_FILE`, then `$JOB_SEARCH_HOME/denylist.txt`; legacy `~/.config/job-search/denylist.txt` is a compatibility fallback |
 
 Without one, the generic checks still run and the script reports that the name checks were skipped.
 

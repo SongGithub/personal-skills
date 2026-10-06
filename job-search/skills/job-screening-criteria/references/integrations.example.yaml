@@ -47,8 +47,9 @@ trello:
 # A mounted volume or a local directory. Blank disables archiving.
 archive_dir: ""
 
-# Master CV template the tailoring skills start from, relative to
-# $JOB_SEARCH_HOME/cv/. The document-design skill defines the format.
+# Active CV layout template. Use an absolute path for a private KB template;
+# relative paths resolve under $JOB_SEARCH_HOME/cv/. The document-design skill
+# defines the format. Archived source snapshots are not active templates.
 cv_template: main.html
 
 # Job-board location strings for --where style filters, most preferred first.

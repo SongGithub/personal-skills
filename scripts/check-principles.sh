@@ -10,7 +10,7 @@
 # Denylist sources, in order:
 #   $PERSONAL_DENYLIST_FILE   path to a local file
 #   $PERSONAL_DENYLIST        the list itself (CI supplies it from a repo secret)
-#   ~/.config/job-search/denylist.txt
+#   $JOB_SEARCH_HOME/denylist.txt, then legacy ~/.config/job-search/denylist.txt
 #
 # Without a denylist the generic checks still run, and the script says so.
 set -uo pipefail
@@ -54,7 +54,7 @@ for p in 'ATATT3' 'gho_' 'ghp_' 'sk-[A-Za-z0-9]{20,}'; do
 done
 
 echo "== private denylist =="
-deny_file="${PERSONAL_DENYLIST_FILE:-$HOME/.config/job-search/denylist.txt}"
+deny_file="${PERSONAL_DENYLIST_FILE:-${JOB_SEARCH_HOME:-$HOME/.config/job-search}/denylist.txt}"
 patterns=""
 if [ -n "${PERSONAL_DENYLIST:-}" ]; then
   patterns="${PERSONAL_DENYLIST}"

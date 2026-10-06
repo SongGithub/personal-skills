@@ -38,8 +38,7 @@ Before any role evaluation, recall the career-first-principles framework from me
 - Ask the user if they want to proceed with an application
 
 ### Step 2: Tailor CV
-- Read the Obsidian `career dev` vault note
-  `00 - 面试准备 Interview Prep/CV 写作与审校方法 — 证据、定位、版式.md`.
+- Read `career_kb_root/CV Writing and Review Method.md` in the private KB.
 - Read the current JD and the `career_kb_root` records configured in
   `$JOB_SEARCH_HOME/integrations.yaml`: `Profile.md`, `Evidence Register.md`, and
   `Skill Gap Register.md`. Use an older CV only to check for omissions or layout ideas.
@@ -48,6 +47,10 @@ Before any role evaluation, recall the career-first-principles framework from me
 - Adjust: profile statement, skills section, experience bullet emphasis, section order
 - Audit ownership, scope, skill depth, dates, and metrics; inspect every PDF page and
   extract its text before reporting the CV ready.
+- Follow the two-agent adversarial review gate in `../cv-generate-and-attach/SKILL.md`.
+  The drafting agent revises and rerenders until the separate reviewer reports zero
+  outstanding findings on the latest HTML and PDF. A factual question or unavailable
+  reviewer leaves the CV incomplete.
 
 ### Step 3: Write Cover Letter
 - Follow the writing style rules in `references/03-writing-style.md` (critical: no em-dashes, no cliches)

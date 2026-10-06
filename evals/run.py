@@ -430,7 +430,9 @@ def check_live_cv(suite: EvalSuite) -> None:
         suite.add("live_cv.skipped", True, "cv_template not set in integrations.yaml")
         return
 
-    cv = home / "cv" / cv_template
+    cv = pathlib.Path(cv_template)
+    if not cv.is_absolute():
+        cv = home / "cv" / cv
     if not cv.exists():
         suite.add("live_cv.exists", False, f"cv_template set but missing: {cv}")
         return
