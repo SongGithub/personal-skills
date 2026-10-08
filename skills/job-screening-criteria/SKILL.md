@@ -36,7 +36,7 @@ Title words are a screening cue, not proof of level. A role with a generic title
 
 ## Search and shortlist
 
-- Use the candidate's private profile and career notes (`$JOB_SEARCH_HOME/profile.md`) alongside the settings above. Prefer stable product companies, mature engineering, hybrid or remote work without relocation, and ownership of platform reliability. Exclude consultancies, agencies, outsourcing, startups, temporary contracts, Azure-first roles requiring deep Azure/Bicep, and product/API roles without a substantial platform remit.
+- Use the candidate's private profile and career notes (`$JOB_SEARCH_HOME/profile.md`) alongside the settings above. Prefer stable product companies, mature engineering, hybrid or remote work without relocation, and ownership of platform reliability. Exclude consultancies, agencies, outsourcing, startups, Azure-first roles requiring deep Azure/Bicep, and product/API roles without a substantial platform remit. Do not exclude a role because it is fixed-term; record the term length and assess the role on scope, stack, pay, and the candidate's other preferences.
 - On the authorised weekday automation, attempt both signed-in LinkedIn Jobs and SEEK before creating an issue. Keep browsing focused: two LinkedIn and three SEEK queries are enough for a normal run. A source failure must be reported, not concealed.
 - Verify promising ads at their source. Deduplicate by source URL or job ID and by company plus role against existing KAN issues. Rank by fit, then confirmed base pay. Zero issues is a valid result; the configured maximum is a ceiling.
 - A posting whose stated closing date has already passed is a screening signal (likely dead lead); skip or flag it rather than filing a fresh record.
