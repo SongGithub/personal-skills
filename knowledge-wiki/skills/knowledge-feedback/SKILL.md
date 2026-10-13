@@ -1,6 +1,6 @@
 ---
 name: knowledge-feedback
-description: When reviewing new memories or nightly Dream output, find a few valuable, evidence-backed links and propose them for human confirmation.
+description: When asked for knowledge feedback, review new memories or nightly Dream output for evidence-backed Obsidian KB connections and proposals.
 ---
 
 # Knowledge Feedback
