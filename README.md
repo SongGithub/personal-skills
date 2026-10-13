@@ -26,6 +26,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `document-design` | The HTML/CSS design system CVs are rendered with. |
 | `communication-style` | Writing style for drafted prose. |
 | `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
+| `knowledge-feedback` | Incrementally review new memories and nightly Dream output for a few evidence-backed knowledge candidates; require confirmation before write-back. |
 
 ## Setup
 
