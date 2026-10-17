@@ -241,7 +241,10 @@ def run_description_evals() -> EvalSuite:
             suite.add(f"{skill_dir.name}/desc.specificity", True)
 
         # Mentions specific domain
-        domain_terms = ["job", "cv", "cover letter", "interview", "salary", "search", "communication", "writing", "style"]
+        domain_terms = [
+            "job", "cv", "cover letter", "interview", "salary", "search",
+            "communication", "writing", "style", "home assistant", "synology", "docker",
+        ]
         has_domain = any(t in desc.lower() for t in domain_terms)
         suite.add(f"{skill_dir.name}/desc.domain", has_domain, "No domain-specific terms" if not has_domain else "")
 

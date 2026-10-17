@@ -11,6 +11,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `knowledge-wiki` | Deeply synthesize sources into a personal knowledge base that is easy to retrieve and evidence-check. |
 | `communication-style` | A direct, plain-spoken, Australian-English writing style for anything an assistant drafts. |
 | `finance` | Portable stock research, strategy comparison, execution planning and risk review for CFO assistants. |
+| `home-assistant` | Diagnose and recover Home Assistant deployments running in Synology Container Manager. |
 
 ### Skills
 
@@ -30,6 +31,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
 | `knowledge-feedback` | Incrementally review new memories and nightly Dream output for a few evidence-backed knowledge candidates; require confirmation before write-back. |
 | `stock-analysis` | A checked four-stage workflow with citations, checkpoints, native-assistant execution and an optional Codex CLI adapter. |
+| `synology-home-assistant-recovery` | Diagnose and recover Home Assistant containers on Synology NAS, including restart recovery when requested. |
 
 ## Setup
 
@@ -40,6 +42,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 /plugin install knowledge-wiki@personal-skills
 /plugin install communication-style@personal-skills
 /plugin install finance@personal-skills
+/plugin install home-assistant@personal-skills
 ```
 
 ## How to install for OpenClaw
@@ -59,6 +62,7 @@ openclaw plugins install --marketplace <owner>/personal-skills document-design
 openclaw plugins install --marketplace <owner>/personal-skills knowledge-wiki
 openclaw plugins install --marketplace <owner>/personal-skills communication-style
 openclaw plugins install --marketplace <owner>/personal-skills finance
+openclaw plugins install --marketplace <owner>/personal-skills home-assistant
 ```
 
 Check what a marketplace publishes before installing:

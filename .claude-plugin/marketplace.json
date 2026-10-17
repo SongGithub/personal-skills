@@ -38,6 +38,12 @@
       "source": "./finance",
       "description": "Portable stock research, strategy comparison, execution planning and risk review for CFO assistants.",
       "version": "1.0.0"
+    },
+    {
+      "name": "home-assistant",
+      "source": "./home-assistant",
+      "description": "Diagnose and recover Home Assistant deployments running in Synology Container Manager.",
+      "version": "1.0.0"
     }
   ]
 }

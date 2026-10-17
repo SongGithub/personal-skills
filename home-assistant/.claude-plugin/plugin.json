@@ -1,0 +1,8 @@
+{
+  "name": "home-assistant",
+  "description": "Diagnose and recover Home Assistant deployments running in Synology Container Manager.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Your Name"
+  }
+}
