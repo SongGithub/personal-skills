@@ -38,6 +38,7 @@ Rules:
 ## Layout
 
 - **Page width 820px maximum**, centred, with a 24px top margin. Wider than this and the line length hurts readability.
+- **Every section sits inside the page wrapper.** Validate balanced `<div>`/`<section>` nesting before delivery. A stray closing tag ends `<div class="page">` early, and every later section then prints at the paper edge with no margin — the text is still all there, so text extraction will not catch it. In the rendered PDF, confirm each section heading and its first body line share the same left text edge as the page padding.
 - **Page padding 38–42px.** Padding carries the visual weight, so no outer border is needed.
 - **Page surround** is `--doc-background-mid` so the white page reads as a sheet.
 - Sections stack with a **15px gap**. Structure comes from spacing and a single hairline under each section heading, not from boxes or panels.
