@@ -39,6 +39,8 @@ jobs:
         # static, config, description, document-design and golden fixtures.
         # The LLM judge is skipped without --llm-judge, so CI stays deterministic.
         run: python3 evals/run.py --suite all
+      - name: Test stock-analysis workflow gates and adapters
+        run: python3 -m unittest discover -s tests -p test_stock_analysis.py -v
   conformance:
     name: Workflow conforms to spec
     runs-on: ubuntu-latest

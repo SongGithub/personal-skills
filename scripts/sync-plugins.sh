@@ -26,6 +26,7 @@ declare -a PLUGINS=(
   "document-design:document-design"
   "communication-style:communication-style"
   "knowledge-wiki:knowledge-compounding knowledge-feedback"
+  "finance:stock-analysis"
 )
 
 for entry in "${PLUGINS[@]}"; do
@@ -45,7 +46,7 @@ for entry in "${PLUGINS[@]}"; do
     # Drop any existing entry (symlink or stale copy), then re-copy as real files.
     rm -rf "$dest"
     mkdir -p "$dest_root"
-    rsync -a --delete --exclude '.DS_Store' "$src/" "$dest/"
+    rsync -a --delete --exclude '.DS_Store' --exclude '__pycache__' --exclude '*.pyc' "$src/" "$dest/"
     echo "synced $plugin/skills/$name"
   done
 done
