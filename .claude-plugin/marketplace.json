@@ -32,6 +32,12 @@
       "source": "./knowledge-wiki",
       "description": "Build and maintain a personal knowledge base with deep synthesis, practical retrieval, evidence checks, and memory feedback.",
       "version": "1.1.0"
+    },
+    {
+      "name": "finance",
+      "source": "./finance",
+      "description": "Portable stock research, strategy comparison, execution planning and risk review for CFO assistants.",
+      "version": "1.0.0"
     }
   ]
 }

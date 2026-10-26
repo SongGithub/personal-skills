@@ -12,3 +12,8 @@ targets.md
 evidence.md
 career-notes.md
 cv/
+
+# Local Python caches and credentials
+__pycache__/
+*.py[cod]
+.env

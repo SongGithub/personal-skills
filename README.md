@@ -10,6 +10,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `document-design` | A reusable HTML document design system — design tokens, print-to-PDF rules — for CVs, one-pagers and short reports. |
 | `knowledge-wiki` | Deeply synthesize sources into a personal knowledge base that is easy to retrieve and evidence-check. |
 | `communication-style` | A direct, plain-spoken, Australian-English writing style for anything an assistant drafts. |
+| `finance` | Portable stock research, strategy comparison, execution planning and risk review for CFO assistants. |
 
 ### Skills
 
@@ -27,6 +28,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `communication-style` | Writing style for drafted prose. |
 | `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
 | `knowledge-feedback` | Incrementally review new memories and nightly Dream output for a few evidence-backed knowledge candidates; require confirmation before write-back. |
+| `stock-analysis` | A checked four-stage workflow with citations, checkpoints, native-assistant execution and an optional Codex CLI adapter. |
 
 ## Setup
 
@@ -36,6 +38,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 /plugin install document-design@personal-skills
 /plugin install knowledge-wiki@personal-skills
 /plugin install communication-style@personal-skills
+/plugin install finance@personal-skills
 ```
 
 ## How to install for OpenClaw
@@ -54,6 +57,7 @@ openclaw plugins install --marketplace <owner>/personal-skills job-search
 openclaw plugins install --marketplace <owner>/personal-skills document-design
 openclaw plugins install --marketplace <owner>/personal-skills knowledge-wiki
 openclaw plugins install --marketplace <owner>/personal-skills communication-style
+openclaw plugins install --marketplace <owner>/personal-skills finance
 ```
 
 Check what a marketplace publishes before installing:
@@ -196,3 +200,18 @@ bash scripts/check-principles.sh && bash scripts/check-structure.sh
    auto-discover new skills
 
 For full authoring guidance, see the [official plugins documentation](https://code.claude.com/docs/en/plugins).
+
+## Stock-analysis workflow
+
+See [stock-analysis](skills/stock-analysis/SKILL.md) for the CFO capability and
+[local runtime](skills/stock-analysis/references/runtime.md) for Mac and Codex
+commands. The method is versioned here; household profiles and generated reports
+stay outside Git. Native-agent execution uses the existing agent model and tools.
+Codex is optional and uses an existing ChatGPT login; no Google SDK or cloud
+deployment is required.
+
+Run the deterministic workflow tests with:
+
+```sh
+python3 -m unittest discover -s tests -p test_stock_analysis.py -v
+```
