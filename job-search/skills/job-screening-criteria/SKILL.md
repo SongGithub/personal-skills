@@ -28,6 +28,24 @@ If it is missing, unreadable, or missing a required key, **stop and report a cle
 
 The available settings, with placeholder values, are documented in `references/preferences.example.yaml` next to this file. Required keys: `currency`, `minimum_base_salary_excluding_super_aud`, `preferred_title_levels`, `preferred_title_families`, `minimum_equivalent_scope`, `excluded_title_levels`, `salary_unknown_policy`, `maximum_new_jira_issues_per_run`.
 
+## Hard eligibility gates
+
+Apply these before any fit scoring. They are binary eligibility bars, not skill gaps, and no
+amount of technical match overrides them.
+
+- **Australian citizenship.** If the advert states that only Australian citizens may apply,
+  exclude the role.
+- **Security clearance.** If the advert requires an active clearance (Baseline, NV1, NV2 or PV),
+  or requires the successful candidate to be able to obtain and maintain one, exclude the role.
+  The candidate does not hold Australian citizenship and cannot obtain NV1.
+
+Read the gate from the posting text, not from the title or company. Check the eligibility,
+requirements and "how to apply" sections for wording such as "Australian Citizens only",
+"security assessed position", "Negative Vetting", "NV1", "Baseline clearance", "AGSVA", or
+"eligible to obtain and maintain a security clearance". Quote the exact sentence in the screening
+note for any role excluded on this basis. Do not create a ticket, and do not tailor a CV or
+cover letter.
+
 Exclude a role whose **core requirement is expert-level hands-on work in a language or discipline the candidate does not have** — for example a backend Java or Spring Boot engineering role when their proven depth is platform and DevOps. A senior title and a familiar industry do not override a stack mismatch: title is a screening cue, never proof of fit. Read the excluded stacks from `$JOB_SEARCH_HOME/targets.md` and the proven skills from `profile.md`.
 
 The salary threshold is **base pay excluding superannuation**, in the configured currency. Exclude an advertised range whose **maximum base** is below the configured minimum. If a range straddles it, mark the role conditional on an offer at or above it. If only an inclusive package is shown, do not treat the package figure as base pay; calculate base only when the super component is clear. If salary is absent, a strong role may be recorded provisionally, with salary unverified prominent in the issue and summary. Do not call it a confirmed match.
