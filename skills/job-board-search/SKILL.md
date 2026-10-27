@@ -118,6 +118,14 @@ Apply the location filter from `references/search-queries.md`.
 Treat a posting whose stated closing date has already passed as a likely dead lead — rate it
 Low or skip it.
 
+**Problem-and-obvious-answer pass.** Before a rating is final, answer two questions from the
+title, teaser and bullet points: what problem the role exists to solve, in one sentence, and
+whether the candidate is the obvious answer to it. The verdict caps the rating — *Obvious
+answer* supports High, *Credible, not obvious* caps at Medium, *Stretch* is Low, and *Not the
+answer* is skipped without a record. A teaser seldom proves "obvious"; state it as provisional
+and confirm against the full advert before intake. The full test and its evidence rules live in
+`job-screening-criteria`.
+
 ## Step 5 — Store
 
 Record every surfaced job, including skipped ones:
@@ -147,7 +155,8 @@ Found X new positions (Y high, Z medium, W low match).
 | 1 | High | … | … | … | Remote/Hybrid | … | [Link](…) |
 ```
 
-Then 2–3 bullets per high match: why it fits, requirements to verify, red flags.
+Then 2–3 bullets per high match: the problem the role solves and why the candidate is
+its obvious answer, requirements to verify, red flags.
 
 For an interactive search, finish by asking whether to evaluate any in detail or apply.
 For an authorised automated intake run, continue to Step 7 without asking. A full
@@ -163,8 +172,10 @@ A teaser is insufficient: fetch the source posting and isolate the complete **re
 
 Preflight an evidence-backed, role-tailored HTML CV and rendered PDF via
 `job-application-pipeline` and `cv-generate-and-attach` **before** creating the KAN issue.
-The issue description starts with the source hyperlink on line 1, then bold metadata, a
-nonempty fit rationale, explicit gaps, and only the cleaned JD through its final paragraph.
+The issue description starts with the source hyperlink on line 1, then bold metadata —
+including **Role problem:** and **Obvious-answer test:** from `job-screening-criteria` — a
+nonempty fit rationale that opens with those two answers, explicit gaps, and only the cleaned
+JD through its final paragraph.
 Exclude LinkedIn/SEEK page chrome: "More jobs", "Set alert for similar jobs", "Premium",
 follower counts, applicant-seniority/education charts and separate "About the company"
 widgets. Immediately attach both CV files after creation and read the issue back to verify

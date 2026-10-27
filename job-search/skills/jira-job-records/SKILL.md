@@ -32,7 +32,7 @@ an older copy of this skill, and never print a credential.
 | Due date | the posting's closing date as YYYY-MM-DD if stated; leave empty otherwise |
 | Source | where the opportunity came from, e.g. `seek` or `linkedin` |
 | Priority | set from the screening result |
-| Description | line 1: job hyperlink; then bold metadata, fit rationale, gaps, and only the cleaned, complete real JD |
+| Description | line 1: job hyperlink; then bold metadata including **Role problem:** and **Obvious-answer test:** (verdict and evidence line); fit rationale opening with those two answers; gaps; and only the cleaned, complete real JD |
 
 **Lane.** Create the record in the **Backlog** lane. Never create directly in To Do: promotion to
 To Do is a triage decision for the candidate, not the intake step.

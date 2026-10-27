@@ -79,6 +79,13 @@ canonical career evidence; an unproven requirement remains a gap.
   candidate-name token `song_jin` is mandatory and must never be omitted; the HTML and PDF
   share the same stem, and the Jira key is retained for traceability. The retired
   `cv_<KEY>_<company-slug>` form is not used for new work.
+- **FR-12** Before a record is created, answer the problem-and-obvious-answer test from
+  `job-screening-criteria`: one sentence naming the problem the role solves with the advert
+  phrase that evidences it, and a verdict — *Obvious answer*, *Credible, not obvious* or
+  *Stretch* — with a citable evidence line and any named gap. Write both into the description
+  metadata as **Role problem:** and **Obvious-answer test:**, and open the fit rationale with
+  them. The verdict sets priority and caps the fit rating; *Not the answer* means no record.
+  The test never overrides a hard eligibility gate.
 
 ## Acceptance test matrix
 
@@ -97,6 +104,9 @@ canonical career evidence; an unproven requirement remains a gap.
 | AT-11 | Staff-targeted CV with a Senior-only summary | Separate reviewer flags the level conflict; revised HTML and PDF are reviewed again |
 | AT-12 | Claim needs candidate confirmation or reviewer is unavailable | No CV sign-off or completed intake; report the exact outstanding issue |
 | AT-13 | Intake creates the role-tailored CV pair | Filenames are `cv_song_jin_<company-slug>_<KEY>.<ext>`; `song_jin` present in both; HTML and PDF share the stem |
+| AT-14 | Advert with a clear problem and matching evidenced experience | **Role problem:** names it with a quoted advert phrase; **Obvious-answer test:** says *Obvious answer* with a cited role and system; priority high |
+| AT-15 | Advert with no discernible problem, or a duty-list JD | Verdict capped at *Credible*; record states the problem is unstated or fragmented as a risk |
+| AT-16 | Advert describes another archetype (unfamiliar discipline, stack or domain) | *Not the answer*; no KAN issue created, and no tailoring effort spent |
 
 ## Out of scope
 

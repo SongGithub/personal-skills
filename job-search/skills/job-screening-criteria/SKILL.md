@@ -60,6 +60,78 @@ Title words are a screening cue, not proof of level. A role with a generic title
 - A posting whose stated closing date has already passed is a screening signal (likely dead lead); skip or flag it rather than filing a fresh record.
 - Keep time and token use bounded. Do the cheap screening and deduplication before drafting CVs. Do not generate packages merely to fill the quota.
 
+## Problem-and-obvious-answer test
+
+Two questions decide whether a role is worth the funnel. Apply them after the hard gates and the
+discipline and salary screens, and before any Jira record exists:
+
+1. **What problem does this role solve?**
+2. **Am I the obvious answer to it?**
+
+This is a *selection* test, not an eligibility gate. It never overrides the citizenship,
+clearance, discipline or salary rules, and passing it is not proof of fit.
+
+### Question 1 — name the problem
+
+Write one sentence in the form *"They need someone to ___ because ___."* Ground it in the
+advert and quote the phrase that shows the pressure (scaling a platform, carrying incident
+load, migrating off a stack, making AI or agent infrastructure safe to operate). A problem is a
+pressure or a gap, not a list of duties.
+
+Judge the problem's quality:
+
+- **Clear and owned** — one problem, a visible cause, someone accountable for it.
+- **Fragmented** — several unrelated problems are bundled together; the role is probably a
+  catch-all. Cap the verdict at *Credible* and record the fragmentation as a risk.
+- **Unstated** — only duties and a wish list. Either the hiring manager has not defined the
+  job or the advert hides it. Cap the verdict at *Credible* and say so.
+
+### Question 2 — test whether the candidate is the obvious answer
+
+Name, in one line, the archetype the advert describes — for example "someone who has run a
+Kubernetes platform for product teams at 200+ engineers and owned its reliability". Then check
+three things against canonical evidence, the profile and evidence register rather than the CV's
+marketing:
+
+1. **Has the candidate done this job?** Point to the role, system, dates and scope.
+2. **At the same scope?** Team size, cross-team influence, scale, regulatory or uptime
+   pressure. Seniority words in an advert are not evidence that scope matches.
+3. **Is it visible on first read?** A bullet or summary line should make the reader think
+   "that is exactly who we need". If the bridge needs three paragraphs, it is not obvious.
+
+Verdicts:
+
+| Verdict | Meaning | Effect on the funnel |
+|---------|---------|----------------------|
+| **Obvious answer** | Solved this exact problem at comparable scope, with citable evidence | Priority high; top pick; tailor now |
+| **Credible, not obvious** | Adjacent evidence with a one-line bridge to the role's problem | Medium; proceed only when the problem is worth solving again; state the bridge |
+| **Stretch** | Evidence exists at smaller scope, or the core skill is unproven | Low; Backlog at most; add the gap to the Skill Gap Register; do not spend tailoring effort unprompted |
+| **Not the answer** | Another archetype is the obvious hire — different discipline, stack or domain | Skip; create no record |
+
+### Rules
+
+- **Evidence, not enthusiasm.** A description that echoes the candidate's keywords is not proof
+  they solved its problem. Cite the role, system and outcome.
+- **Absence from the profile is not absence of evidence.** Ask the candidate before downgrading
+  a claim; the profile lags real experience.
+- **Domain gaps are not stack gaps.** If the problem sits in a domain the candidate has not
+  worked in, name the domain gap explicitly rather than converting it into a stack excuse.
+- **Attractiveness is not fit.** A desirable company does not raise a verdict.
+
+### Recording the result
+
+Every record carries the test in its description metadata, so triage and interview preparation
+start from the problem rather than the advert:
+
+```
+**Role problem:** <one sentence> — <the advert phrase that evidences it>
+**Obvious-answer test:** <Obvious answer | Credible | Stretch> — <evidence line>; <named gap, if any>
+```
+
+The fit rationale opens by answering the two questions before any other reasoning. A record
+whose problem statement is only a duty list, or whose verdict carries no evidence line, fails
+the intake evidence gate.
+
 ## Jira evidence gate
 
 For each selected role, save its exact source URL, company, title, location/work pattern,
