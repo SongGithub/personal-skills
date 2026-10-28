@@ -24,6 +24,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `skill-gap-plan` | Gap heatmap and learning plan from tracked roles vs. profile. |
 | `trello-card-rules` | Duplicate detection, title format and lane placement for Trello. |
 | `first-principles-startup` | First-principles reasoning for a startup or a job search (中文). |
+| `native-reminders-and-github` | Create and verify reminders in a native provider, and verify GitHub auth and push access. |
 | `document-design` | The HTML/CSS design system CVs are rendered with. |
 | `communication-style` | Writing style for drafted prose. |
 | `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
