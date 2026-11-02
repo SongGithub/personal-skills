@@ -1,6 +1,6 @@
 # personal-skills
 
-A Claude Code plugin marketplace for running a job search well: evaluate roles honestly, screen them against your own criteria, tailor CVs, and keep documents consistent.
+A Claude Code plugin marketplace for reusable personal workflows across job search, knowledge management, writing, video transcription and more.
 
 ## Plugins
 
@@ -11,6 +11,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `knowledge-wiki` | Deeply synthesize sources into a personal knowledge base that is easy to retrieve and evidence-check. |
 | `communication-style` | A direct, plain-spoken, Australian-English writing style for anything an assistant drafts. |
 | `finance` | Portable stock research, strategy comparison, execution planning and risk review for CFO assistants. |
+| `wechat-video-transcription` | Transcribe WeChat Channels videos locally, verify content clues, and produce raw and cleaned transcripts. |
 
 ### Skills
 
@@ -30,6 +31,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
 | `knowledge-feedback` | Incrementally review new memories and nightly Dream output for a few evidence-backed knowledge candidates; require confirmation before write-back. |
 | `stock-analysis` | A checked four-stage workflow with citations, checkpoints, native-assistant execution and an optional Codex CLI adapter. |
+| `wechat-video-transcription` | Verify a WeChat Channels video and create timestamped original and cleaned transcripts with local Chinese ASR. |
 
 ## Setup
 
@@ -40,6 +42,7 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 /plugin install knowledge-wiki@personal-skills
 /plugin install communication-style@personal-skills
 /plugin install finance@personal-skills
+/plugin install wechat-video-transcription@personal-skills
 ```
 
 ## How to install for OpenClaw
@@ -59,6 +62,7 @@ openclaw plugins install --marketplace <owner>/personal-skills document-design
 openclaw plugins install --marketplace <owner>/personal-skills knowledge-wiki
 openclaw plugins install --marketplace <owner>/personal-skills communication-style
 openclaw plugins install --marketplace <owner>/personal-skills finance
+openclaw plugins install --marketplace <owner>/personal-skills wechat-video-transcription
 ```
 
 Check what a marketplace publishes before installing:

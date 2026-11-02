@@ -4,7 +4,7 @@
     "name": "Your Name"
   },
   "metadata": {
-    "description": "Personal skills for knowledge management, job-search workflows, and clear writing.",
+    "description": "Personal skills for job search, knowledge management, writing, finance, and local video transcription workflows.",
     "version": "1.0.0",
     "pluginRoot": "."
   },
@@ -37,6 +37,12 @@
       "name": "finance",
       "source": "./finance",
       "description": "Portable stock research, strategy comparison, execution planning and risk review for CFO assistants.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "wechat-video-transcription",
+      "source": "./wechat-video-transcription",
+      "description": "Transcribe WeChat Channels videos locally, verify content clues, and produce raw and cleaned transcripts.",
       "version": "1.0.0"
     }
   ]

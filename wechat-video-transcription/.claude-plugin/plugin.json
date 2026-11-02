@@ -1,0 +1,6 @@
+{
+  "name": "wechat-video-transcription",
+  "description": "Transcribe WeChat Channels videos locally, verify content clues, and produce raw and cleaned transcripts.",
+  "version": "1.0.0",
+  "author": {"name": "Your Name"}
+}

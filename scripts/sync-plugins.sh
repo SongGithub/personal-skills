@@ -27,6 +27,7 @@ declare -a PLUGINS=(
   "communication-style:communication-style"
   "knowledge-wiki:knowledge-compounding knowledge-feedback"
   "finance:stock-analysis"
+  "wechat-video-transcription:wechat-video-transcription"
 )
 
 for entry in "${PLUGINS[@]}"; do
