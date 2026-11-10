@@ -94,6 +94,17 @@ entire HTML, then renders the PDF and inspects every page. Confirm the extracted
 matches the proofread HTML, employment dates match the KB records, and there are no browser
 headers, footers, clipped or tiny text, or nearly blank trailing page.
 
+**Check structural integrity before typography.** A layout bug can leave every word present and
+in order while a whole section prints flush to the paper edge. Before rendering, verify the
+HTML structure: the counts of `<div>` and `</div>` must match, the same for `<section>`, and
+every `<section>` must sit inside the page wrapper (`<div class="page">`). No closing tag may
+end the wrapper before the last section. Do not reorder role blocks with ad-hoc string slicing;
+if a block must move, rebuild from the template or re-read the file and re-validate tag balance
+afterwards. After rendering, compare the left text edge of each section heading and its first
+body line: every one must share the page padding (about 43 pt on A4 with the 820px template).
+A section starting at the paper edge has escaped the wrapper, and the PDF is invalid even though
+text extraction looks complete. Check coordinates, not just text.
+
 Assign a **separate agent** to adversarially proofread the resulting HTML and PDF. Give the
 reviewer the complete posting or tracked JD, the canonical profile and evidence register,
 the CV writing method, and both artefacts. The reviewer must independently compare the

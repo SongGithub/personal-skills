@@ -30,8 +30,23 @@ A Claude Code plugin marketplace for running a job search well: evaluate roles h
 | `communication-style` | Writing style for drafted prose. |
 | `knowledge-compounding` | Ingest sources, synthesize durable insights, improve retrieval, and verify wiki quality. |
 | `knowledge-feedback` | Incrementally review new memories and nightly Dream output for a few evidence-backed knowledge candidates; require confirmation before write-back. |
+| `human-feedback-loop` | Learn from human corrections and observable manual edits across AI clients; retain authorised lessons and verify later application. |
 | `stock-analysis` | A checked four-stage workflow with citations, checkpoints, native-assistant execution and an optional Codex CLI adapter. |
 | `synology-home-assistant-recovery` | Diagnose and recover Home Assistant containers on Synology NAS, including restart recovery when requested. |
+
+## Human intervention feedback across AI systems
+
+The canonical [human-feedback-loop policy](skills/human-feedback-loop/SKILL.md)
+applies across AI clients and model providers. It defines how to detect user
+interventions, repair the active task, retain authorised durable lessons and
+check later application. The `knowledge-wiki` plugin packages a generated copy;
+edit only the canonical source under `skills/`.
+
+Clients with skill support can load the skill; other clients can use its body in
+persistent instructions. Each client must separately configure its memory
+connection and standing retention authorisation. Installing the policy does not
+enable monitoring or configure other apps. Client-specific adapters should link
+to this source instead of maintaining their own version of the core policy.
 
 ## Setup
 

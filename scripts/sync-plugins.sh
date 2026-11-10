@@ -25,7 +25,7 @@ declare -a PLUGINS=(
   "job-search:job-application-preparation job-screening-criteria jira-job-records job-application-pipeline cv-generate-and-attach trello-card-rules job-board-search skill-gap-plan first-principles-startup native-reminders-and-github"
   "document-design:document-design"
   "communication-style:communication-style"
-  "knowledge-wiki:knowledge-compounding knowledge-feedback"
+  "knowledge-wiki:knowledge-compounding knowledge-feedback human-feedback-loop"
   "finance:stock-analysis"
   "home-assistant:synology-home-assistant-recovery"
 )
